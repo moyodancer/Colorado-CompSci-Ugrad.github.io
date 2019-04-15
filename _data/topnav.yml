@@ -24,5 +24,7 @@ topnav_dropdowns:
           url: /runestone_landing_page.html
         - title: Cloud Resources
           url: /cloud_resources_landing_page.html
+        - title: Web Publishing 
+          url: /web_publishing_landing_page.html
         - title: Help@CS
           url: /helpatcs_landing_page.html

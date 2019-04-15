@@ -78,3 +78,20 @@ entries:
     - title: CS VM
       url: /cser_cs_vm.html
       output: web, pdf
+
+  - title: Other Information
+    output: web, pdf
+    folderitems:
+
+    - title: Introduction
+      url: /web_publishing_landing_page.html
+      output: web
+  
+    - title: Updating this FAQ website
+      url: update_this_site.html
+      output: web
+    
+    - title: Github.io websites
+      url: using_github_io.html
+      output: web
+  
