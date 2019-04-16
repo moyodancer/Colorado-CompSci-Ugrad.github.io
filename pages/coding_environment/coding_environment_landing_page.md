@@ -12,6 +12,7 @@ You login using the same username and password that you use for Gmail. The Codin
 
 [![coding environment login demo](https://img.youtube.com/vi/-uq5cuKA97A/0.jpg)](https://www.youtube.com/watch?v=-uq5cuKA97A)
 
+Here is a [A video overview of Jupyter hub.](https://www.youtube.com/watch?v=advOlEIAphk)
 
 ## Logout
 
