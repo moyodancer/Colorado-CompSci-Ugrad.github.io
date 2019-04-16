@@ -7,7 +7,7 @@ permalink: cser_vmware.html
 folder: cser
 ---
 
-{% include note.html content="The use of VMware and the CU CS VM are deprecated in favor of using the <a href='/coding_environment_landing_page.html'>Coding Environment</a>" %}
+{% include note.html content="Most classes should be able to use the <a href='/coding_environment_landing_page.html'>Coding Environment</a> but students may still need VMware for certain classes (e.g. operating systems). Outside of class, modern work practices make extensive use of virtual machines and can also use these tools for your own projects and learning." %}
 
 
 ## Obtaining a license key for VMware
