@@ -59,16 +59,8 @@ entries:
       url: /cser_campus_offerings.html
       output: web, pdf
 
-    - title: OIT Licensed
-      external_url: https://oit.colorado.edu/software-hardware/software-downloads-and-licensing
-      output: web, pdf
-
-    - title: Microsoft
-      external_url: https://oit.colorado.edu\/software-hardware\/microsoft
-      output: web, pdf
-
-    - title: Apple
-      external_url: https://oit.colorado.edu\/software-hardware\/software-downloads-and-licensing\/apple-software
+    - title: Free & Discounted
+      url: cser_free_discount.html
       output: web, pdf
 
     - title: VMware
