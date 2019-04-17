@@ -8,7 +8,11 @@ folder: coding_environment
 
 ## Overview
 
-The CU CS Coding Environment is a cloud based service for students taking Computer Science classes that provides a collection of tools used in our program. There is an Integrated Development Environment (Visual Studio Code), JupyterLab, Text Editor, Diagram, and a Terminal console. This allows students to focus on fundamentals of the classes without struggling with hardware and software configurations. 
+The CU CS Coding Environment is a cloud based service for students taking Computer Science classes that provides a collection of tools used in our program. There is an Integrated Development Environment (Visual Studio Code), JupyterLab, Text Editor, Diagram, and a Terminal console. This allows students to focus on fundamentals of the classes without struggling with hardware and software configurations.
+
+## Persistent Disk
+
+Each user of the system is assigned a 2 GigaByte (GB) disk that is will be retained between sessions. Be aware that it is your responsibility to backup the data.
 
 ## Login
 
