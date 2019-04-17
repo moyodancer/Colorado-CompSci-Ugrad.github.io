@@ -1,6 +1,6 @@
 ---
 title: Free & Discounted
-keywords: onthehub, software, discount
+keywords: onthehub, oit, software, discount
 summary: "Free & Discounted software available to students"
 sidebar: mydoc_sidebar
 permalink: cser_free_discount.html
