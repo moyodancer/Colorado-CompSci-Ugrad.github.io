@@ -2,7 +2,7 @@
 title: Proxying Web Applications
 keywords: Coding, Environment, web, app
 sidebar: coding_environment_sidebar
-permalink: coding_environment_proxy.btml
+permalink: coding_environment_proxy.html
 folder: coding_environment
 ---
 
