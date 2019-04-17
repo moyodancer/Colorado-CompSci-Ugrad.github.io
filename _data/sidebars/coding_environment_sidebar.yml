@@ -39,6 +39,11 @@ entries:
         url: /coding_environment_diagram.html
         output: web, pdf
 
+      - title: Running Webapps
+        url: /coding_environment_proxy.html
+        output: web, pdf
+
+
   - title: For Faculty and Staff
     output: web, pdf
     folderitems:
