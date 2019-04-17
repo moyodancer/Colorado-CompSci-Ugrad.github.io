@@ -19,30 +19,30 @@ entries:
       output: pdf
       type: frontmatter
 
-  - title: Getting Started
+  - title: For Students
     output: web, pdf
     folderitems:
-    - title: Coding Environment home
-      url: /coding_environment_landing_page.html
-      output: web
 
-  - title: Jupyter Notebook
-    output: web, pdf
-    folderitems:
-        - title: Jupyter Notebook home
-          url: /coding_environment_jupyter_notebook.html
-          output: web, pdf
+      - title: Coding Environment home
+        url: /coding_environment_landing_page.html
+        output: web
 
-  - title: Visual Studio (VS) Code
-    output: web, pdf
-    folderitems:
-      - title: Visual Studio Code home
+      - title: Using Jupyter Notebooks
+        url: /coding_environment_jupyter_notebook.html
+        output: web, pdf
+
+      - title: Using Visual Studio Code
         url: /coding_environment_vs_code.html
         output: web, pdf
 
-  - title: Diagram
+      - title: Using Diagram Editor
+        url: /coding_environment_diagram.html
+        output: web, pdf
+
+  - title: For Faculty and Staff
     output: web, pdf
     folderitems:
-      - title: Diagram home
-        url: /coding_environment_diagram.html
+
+      - title: Implementation Details
+        url: coding_environment_implementation.html
         output: web, pdf
