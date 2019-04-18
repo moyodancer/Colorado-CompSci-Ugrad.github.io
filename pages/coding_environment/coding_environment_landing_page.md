@@ -14,6 +14,14 @@ The CU CS Coding Environment is a cloud based service for students taking Comput
 
 Each user of the system is assigned a 2 GigaByte (GB) disk that is will be retained between sessions. Be aware that it is your responsibility to backup the data.
 
+## Python Libraries
+
+If you need a library that is not available in the Conding Environment, you can install them on your persistent disk.
+
+```
+pip install --user [libraryName]
+```
+
 ## Login
 
 You login using the same username and password that you use for Gmail. The Coding Environment can be found at- [https://coding.csel.io/hub/login](https://coding.csel.io/hub/login). The video below demonstrates the login process.
