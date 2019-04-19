@@ -27,4 +27,4 @@ Homepage- [https://moodle.org](https://moodle.org)
 7. Fill in the "Enrollment key" field with the password you will share with students
 8. Click the "Save changes" button at the bottom of the page
 9. Enable the enrollment method by clicking on the Eyeball icon across from "Self enrollment(Student)"
-    This should remove the line through the eyeball (indicating it is enabled)
+    * This should remove the line through the eyeball (indicating it is enabled)
