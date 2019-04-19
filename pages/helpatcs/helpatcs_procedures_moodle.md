@@ -151,3 +151,27 @@ rm /tmp/[COURSE_ID].mbz
 9. Select all Participants and delete them
 10. Enroll the new teacher as a Teacher in the class
 11. Send an email to the teacher with a link to the course page
+
+## Problem: Email not sending
+
+From time to time, Moodle is unable to send out the regular email notifications. To confirm the problem:
+1. Navigate to Moodle -> Site Administration -> Email -> Email Test
+2. Provide a "To email address"
+3. Click "Send a test message"
+
+If the next page is not Success, follow the steps below to restart the SMTP pod.
+1. Identify the SMTP pod
+```
+kubectl config use-context gke_emerald-agility-749_us-west1-a_production
+kubectl config set-context gke_emerald-agility-749_us-west1-a_production --namespace moodle-prod
+kubectl get pod | grep smtp
+```
+2. Kill the existing pod
+```
+kubectl delete pod [SMTP pod name]
+```
+3. Wait for the new pod to reach Running state
+```
+kubectl get pod | grep smtp
+```
+4. Resend the test email as described above to confirm it is working again
