@@ -1,6 +1,6 @@
 ---
 title: VMware
-keywords: vmware, workstation, fusion, hypervisor
+keywords: vmware, workstation, fusion, hypervisor, vmap
 summary: "The Computer Science department has a license that allows all students enrolled in computer science classes to receive an annual license to VMware products"
 sidebar: mydoc_sidebar
 permalink: cser_vmware.html
