@@ -155,7 +155,7 @@ rm /tmp/[COURSE_ID].mbz
 ## Problem: Email not sending
 
 From time to time, Moodle is unable to send out the regular email notifications. To confirm the problem:
-1. Navigate to Moodle -> Site Administration -> Email -> Email Test
+1. Navigate to Moodle -> Site Administration -> Server -> Email Test
 2. Provide a "To email address"
 3. Click "Send a test message"
 
