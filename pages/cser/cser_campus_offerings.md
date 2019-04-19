@@ -25,6 +25,11 @@ DocuSign is an easy-to-use, full-featured, web-based application for signing/sen
 
 VoiceThread allows people to have asynchronous group conversations around images, documents, videos and presentations they upload to the site. Once a user shares a VoiceThread, others can comment on it verbally (with a microphone or telephone), with text, by uploading an audio file or by recording a video with their webcam. Additionally, others can review the comments and see who made them. It is offered free of charge to all CU Boulder Affiliates. See the [OIT's VoiceThread page](https://oit.colorado.edu/services/teaching-learning-applications/voicethread) for more information.
 
+### Google Suite
+
+Along with the services you regularly use (e.g. Gmail, Calendar, Docs), we also have access to Google Sites for Student webpages.
+
+See the [OIT's Google Suite page](https://oit.colorado.edu/services/messaging-collaboration/gsuite) for the full details of what is available. 
 
 ### Qualtrics
 
