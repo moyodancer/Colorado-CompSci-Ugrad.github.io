@@ -11,28 +11,26 @@ folder: helpatcs
 One of the more common Moodle-related admin tasks is creating new
 courses at the start of each semester.
 
-* Sometimes instructors will request blank courses.
-To do this, go to Admin -> Courses -> Manage Courses & Categories,
-navigate to the category for the current semester, select create course
-and fill in the information (title, short name, start date). The start
-date should be the starting date of the semester since all dates in the course
-are keyed off of that start. The course short name should be of the form
-CSCInnnn-semYY where 'sem' is F, S or Su and YY is the year digits.
-The course title should be of the form CSCInnn - faculty - title.
-When the course is created, navigate to the course, and add the instructor
-as 'teacher'. They can then add other teachers (TA's, etc).
+Sometimes instructors will request blank courses. To do this:
 
-* More often than not, faculty want a copy of a
-previous semester's course. To create such a copy, one must first
-backup the course using Moodle built-in course backup features, and
-then restore the course to the new semester. You can either use a
-course from the S3 archive or from prior semesters. To restore from
-a prior semester that is still on Moodle, navigate to the class instance,
-go to Backup in the course admin menu, backup the course and then select
-the "restore" option. You would restore the course as a new course in the
-new semester category. When you restore the course, insure that you're
-not also restoring the users. Once restored, modify the title and the
-short name to match the appropriate faculty and semester.
+1. Go to Admin -> Courses -> Manage Courses & Categories,
+2. Navigate to the category for the current semester
+3. Select create course and fill in the information (title, short name, start date).
+* The start date should be the starting date of the semester since all dates in the course
+are keyed off of that start.
+* The course short name should be of the form CSCInnnn-semYY where 'sem' is F, S or Su and YY is the year digits.
+* The course title should be of the form CSCInnnn - faculty - title.
+4. When the course is created, navigate to the course, and add the instructor as 'teacher'. They can then add other teachers (TA's, etc).
+
+More often than not, faculty want a copy of a previous semester's course. To create such a copy, one must first backup the course using Moodle built-in course backup features, and then restore the course to the new semester. You can either use a course from the S3 archive or from prior semesters. To restore from a prior semester that is still on Moodle:
+
+1. Navigate to the class instance
+2. Go to Backup in the course admin menu
+3. Backup the course
+4. Select the "restore" option.
+
+You would restore the course as a new course in the new semester category. When you restore the course, insure that you're
+not also restoring the users. Once restored, modify the title and the short name to match the appropriate faculty and semester.
 
 ## Backup & Archiving Course
 
@@ -128,7 +126,7 @@ kubectl exec -it php-fpm-XXXXXXXX-XXXX /bin/bash
 2. Backup the course by COURSE_ID
 ```
 cd /srv/moodle/code
-su -s /bin/bash -c "/srv/moodle/moosh/moosh.php course-backup -f /srv/moodle/data/backup/[COURSE_ID].mbz [COURSE_ID]" www-data
+su -s /bin/bash -c "/srv/moodle/moosh/moosh.php course-backup -f /tmp/[COURSE_ID].mbz [COURSE_ID]" www-data
 ```
 
 3. Determine the Category ID where the course will be restored
@@ -138,7 +136,12 @@ su -s /bin/bash -c "/srv/moodle/moosh/moosh.php category-list" www-data
 
 4. Restore the course
 ```
-su -s /bin/bash -c "/srv/moodle/moosh/moosh.php course-restore [COURSE_ID].mbz [CATEGORY_ID]" www-data
+su -s /bin/bash -c "/srv/moodle/moosh/moosh.php course-restore /tmp/[COURSE_ID].mbz [CATEGORY_ID]" www-data
+```
+
+5. Clean up
+```
+rm /tmp/[COURSE_ID].mbz
 ```
 
 5. Open the Moodle web page and Login
