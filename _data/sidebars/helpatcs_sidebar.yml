@@ -33,12 +33,40 @@ entries:
           url: /helpatcs_sla.html
           output: web, pdf
 
-        - title: Processes
-          url: /helpatcs_processes.html
-          output: web, pdf
+  - title: Processes
+    output: web, pdf
+    folderitems:
+      - title: Process Home
+        url: /helpatcs_process.html
+        output: web, pdf
+      - title: Pre-Semester
+        url: /helpatcs_process_presemester.html
+        output: web, pdf
+      - title: Semester
+        url: /helpatcs_process_semester.html
+        output: web, pdf
+      - title: Post-Semester
+        url: /helpatcs_process_postsemester.html
+        output: web, pdf
 
-        - title: Procedures
-          url: /helpatcs_procedures.html
+  - title: Procedures
+    output: web, pdf
+    folderitems:
+      - title: Procedures Home
+        url: /helpatcs_procedures.html
+        output: web, pdf
+      - title: VMware Licenses
+        url: /helpatcs_procedures_vmware.html
+        output: web, pdf
+      - title: Moodle
+        url: /helpatcs_procedures_moodle.html
+        output: web, pdf
+      - title: csel.io Domain
+        url: /helpatcs_procedures_cselio.html
+        output: web, pdf
+      - title: Education OpenStack
+        url: /helpatcs_procedures_edstack.html
+        output: web, pdf
 
   - title: Projects
     output: web, pdf
@@ -62,4 +90,3 @@ entries:
       - title: GitHub Classroom CI Grader
         url: /helpatcs_github_classroom_ci_grader.html
         output: web, pdf
-        

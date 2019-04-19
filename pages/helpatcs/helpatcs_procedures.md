@@ -8,3 +8,5 @@ folder: helpatcs
 ---
 
 ## Introduction
+
+The section provides step-by-step guides for common tasks preformed by our staff.
