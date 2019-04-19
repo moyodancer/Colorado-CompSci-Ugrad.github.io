@@ -1,6 +1,6 @@
 ---
 title: Campus Offerings
-keywords: zoom, docusign, esignature, conference, conferencing, ssl, certificate, voicethread, qualtrics, survey, transfer, file_transfer, large_file
+keywords: zoom, docusign, esignature, conference, conferencing, ssl, certificate, voicethread, qualtrics, survey, transfer, file_transfer, large_file, google suite, student website, website
 summary: "CU Boulder provides a host of common good services that are available to support education"
 sidebar: mydoc_sidebar
 permalink: cser_campus_offerings.html
@@ -29,7 +29,7 @@ VoiceThread allows people to have asynchronous group conversations around images
 
 Along with the services you regularly use (e.g. Gmail, Calendar, Docs), we also have access to Google Sites for Student webpages.
 
-See the [OIT's Google Suite page](https://oit.colorado.edu/services/messaging-collaboration/gsuite) for the full details of what is available. 
+See the [OIT's Google Suite page](https://oit.colorado.edu/services/messaging-collaboration/gsuite) for the full details of what is available.
 
 ### Qualtrics
 
