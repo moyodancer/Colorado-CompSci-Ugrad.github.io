@@ -120,3 +120,7 @@ The technical aspects of this project are minor and unlikely to encounter failur
 ## Next Steps
 
 To formalize this proposal an approval from the Department of Computer Science must be received by the Computing Infrastructure committee.
+
+## Service Now Ticket
+
+[GREQ0162680](https://colorado.service-now.com/sncms/view.do?sysparm_document_key=task,a61cf126db40dbc02a8c13141b96192a)
