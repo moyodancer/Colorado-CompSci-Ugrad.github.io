@@ -2,7 +2,7 @@
 title: CU-SIS Enrollment Project
 keywords: cu, sis, enrollment
 sidebar: helpatcs_sidebar
-toc: false
+toc: true
 permalink: helpatcs_cu_sis_enrollment.html
 folder: helpatcs
 ---
