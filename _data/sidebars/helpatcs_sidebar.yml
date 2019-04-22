@@ -67,6 +67,9 @@ entries:
       - title: Education OpenStack
         url: /helpatcs_procedures_edstack.html
         output: web, pdf
+      - title: Coding Environment
+        url: /helpatcs_procedures_jupyterlab.html
+        output: web, pdf
 
   - title: Projects
     output: web, pdf
