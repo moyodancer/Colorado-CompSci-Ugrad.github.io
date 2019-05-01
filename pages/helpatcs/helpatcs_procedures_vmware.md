@@ -1,6 +1,6 @@
 ---
-title: Help@CS SLA
-keywords: procedure, vmware, license,
+title: Help@CS VMware
+keywords: procedure, vmware, license
 sidebar: helpatcs_sidebar
 permalink: helpatcs_procedures_vmware.html
 folder: helpatcs
@@ -9,6 +9,21 @@ folder: helpatcs
 ## Introduction
 
 The CS Department has a site license for VMware that allows us to grant short term licenses to students. This license is particularly valuable to students taking Operating System and other classes where the Coding Environment cannot provide the services needed (big memory, high CPU, kernel hacking, etc). Below you will find information about the common activities needed to manage the VMware subscriptions.
+
+## User IDs
+The User ID that is used for VMware licenses has changed over time. It was initially started with First.Last@colorado.edu, but this email address can be changed and is therefore deprecated. The new standard is to user the IdentiKey email address which fits the format: abcd1234@colorado.edu
+
+To lookup the IdentiKey username for a student, the ldapsearch tool is handy.
+
+Lookup by email
+```
+ldapsearch -xLLLH ldap://directory.colorado.edu -b ou=people,dc=colorado,dc=edu mail="first.last@colorado.edu"
+```
+
+Lookup by Identikey ID
+```
+ldapsearch -xLLLH ldap://directory.colorado.edu -b ou=people,dc=colorado,dc=edu uid="abcd1234"
+```
 
 ## Logging in
 
