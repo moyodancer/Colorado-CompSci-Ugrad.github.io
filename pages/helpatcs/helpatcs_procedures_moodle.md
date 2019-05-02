@@ -175,3 +175,182 @@ kubectl delete pod [SMTP pod name]
 kubectl get pod | grep smtp
 ```
 4. Resend the test email as described above to confirm it is working again
+
+## Initial Environment Setup
+
+```
+gcloud auth application-default login
+gcloud config set project emerald-agility-749
+gcloud container clusters list
+gcloud container clusters get-credentials production --zone us-west1-a
+```
+
+## Deploy Moodle to DEV
+
+This build process is dependant on the following utilities being installed
+* gcloud kubectl (this part of gcloud components)
+* envsubst (brew install gettext)
+* realpath (brew tap iveney/mocha && brew install realpath)
+
+1. Connect to Development
+```
+gcloud config set project csel-dev-161517
+gcloud config list
+kubectl config use-context gke_csel-dev-161517_us-west1-a_development
+kubectl config set-context gke_csel-dev-161517_us-west1-a_development --namespace development
+```
+
+
+2. Restore the SQL development database with production data in the Cloud Console.
+
+[Google Cloud Console](https://console.cloud.google.com)
+
+	a. ) Select SQL -> moodle-mysql -> Backups
+	b. ) Choose the most recent backup and then click Restore.
+	c. ) Select the target instance to "moodle-mysql-dev"
+
+3. Restore the Moodle data disk. This process is not ideal but Google Compute does not allow you to access snapshot disks across projects, however, it does allow you to share images. So we first create an image from a snapshot and share this with the development project.
+
+	a. ) Create an Image of the most recent moodle-data-disk-ssd
+		i.  ) Compute Engine -> Images -> Create Image (use defaults except for options below)
+			a. ) Name it moodle-data-disk-ssd-image-YYYYMMDD
+			b. ) Source from snapshot. Use the latest snapshot which is an epoch date.
+			c. ) Create Image
+      d. ) Once the image has been created, copy the the selflink path. This can be found Compute Engine -> Images -> Click your Image Name -> Click Equivalent REST -> Copy selflink path. You will need this for next step.
+
+	b.)  Create a new moodle-data-disk-ssd in development.
+		i.  ) First you must delete the moodle-data-disk-ssd in development. Be sure you are in the development project!!!
+			a. ) Compute Engine -> Disks -> Select Disk -> Click Delete
+		ii. ) Create the new moodle-data-disk-ssd
+			```gcloud compute disks create moodle-data-disk-ssd --image=$SELFLINKPATH --zone=us-west1-a```
+		iii.  ) Confirm disk is available. Compute Engine -> Disks
+
+
+4. Clone the Moodle repo (or pull updates if you already have it)
+```
+git clone git@bitbucket.org:ucbcsops/k8s-moodle.git
+```
+
+5. Clone the Registry (or pull update if you already have it)
+```
+git clone git@bitbucket.org:ucbcsops/registry.git
+```
+
+6. Determine the stable version of Moodle for the upgrade
+[https://download.moodle.org/releases/latest/])(https://download.moodle.org/releases/latest/)
+
+7. Edit the develop variables file
+```
+cd k8s-moodle
+vi environments/development/variables.conf
+```
+
+8. Change the JENKINS_BUILD variable to match the desired version number and set the build number
+Note: Change version number to match what you found in step #3
+```
+export JENKINS_BUILD=development3.6.3-1
+```
+
+9. Push the change to bitbucket
+```
+git push
+cd ..
+```
+
+10. Edit the Moodle-base Dockerfile
+```
+vi registry/moodle-base/Dockerfile
+```
+
+11. Change the Moodle version to match the desired version number
+Note: Change version number to match what you found in step #3
+```
+ENV MOODLE_VERSION v3.6.3
+```
+
+12. Download the matching (or most recent) REMUI theme (as needed) to registry/moodle-ucbcs/theme
+[EdWiser](https://edwiser.org/my-account/)
+
+13. Change into the theme directory
+```
+cd registry/moodle-ucbcs/theme
+```
+
+14. Unzip the new Theme
+```
+unzip Edwiser_Remui_3_443e8cd7b289e3d44.zip
+```
+
+15. Unzip each of the nested Zip files
+```
+unzip Edwiser_Course_Formats_v1.0.0.zip
+unzip edwiser_remui_3.6.2.zip
+unzip edwiser_remui_block_1.0.3.zip
+```
+
+16. Move each into a versioned folder
+Note: REMUI 3.6.2 was the latest version when this was written
+```
+mv remui remui_3.6.2
+mv remuiblck remuiblck_3.6.2
+mv remuiformat remuiformat_3.6.2
+```
+
+17. Cleanup zip files
+```
+rm *.zip
+```
+
+18. Edit the Moodle-ucbcs Dockerfile
+```
+vi ../Dockerfile
+```
+
+19. Modify the theme paths
+```
+ADD theme/remui_3.6.2_ucbcs_custom ${MOODLE_CODE_DIR}/theme/remui
+ADD theme/remuiblck_3.6.2 ${MOODLE_CODE_DIR}/blocks/remuiblck
+ADD theme/remuiformat_3.6.2 ${MOODLE_CODE_DIR}/course/format/remuiformat
+```
+
+20. Change into the k8s-moodle directory
+```
+cd ../../../k8s-moodle
+```
+
+21. Fix permissions on namespace scripts
+```
+chmod 750 build/development/namespace/*
+```
+
+
+22. Check Jenkins for build completion (Must be on CU VPN)
+ [Jenkins](https://ci.csel.io/)
+
+23. Tear down all services in DEV
+ ```
+ k8s-moodle/build/development/scripts/tear-down-all
+ ```
+ Note: a remaining cluster node is okay
+
+ 24. Ensure all pods are gone
+ ```
+ kubectl get pod
+ ```
+
+25. Build the environment
+```
+cd k8s-moodle
+./build-env development
+cd ..
+```
+
+26. Deploy the environment
+```
+build/development/scripts/deploy-all
+```
+
+27. Test (Must be on CU VPN)
+[Moodle-dev](moodle-dev.csel.io)
+### Additional Documentation
+[https://bitbucket.org/ucbcsops/k8s-moodle/src/master/](https://bitbucket.org/ucbcsops/k8s-moodle/src/master/)
