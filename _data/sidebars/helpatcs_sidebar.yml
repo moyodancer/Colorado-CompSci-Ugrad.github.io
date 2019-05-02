@@ -55,20 +55,23 @@ entries:
       - title: Procedures Home
         url: /helpatcs_procedures.html
         output: web, pdf
-      - title: VMware Licenses
+      - title: VMware Licenses (Staff)
         url: /helpatcs_procedures_vmware.html
         output: web, pdf
-      - title: Moodle
+      - title: Moodle (Staff)
         url: /helpatcs_procedures_moodle.html
         output: web, pdf
-      - title: csel.io Domain
+      - title: csel.io Domain (Staff)
         url: /helpatcs_procedures_cselio.html
         output: web, pdf
-      - title: Education OpenStack
+      - title: Education OpenStack (Staff)
         url: /helpatcs_procedures_edstack.html
         output: web, pdf
-      - title: Coding Environment
+      - title: Coding Environment (Staff)
         url: /helpatcs_procedures_jupyterlab.html
+        output: web, pdf
+      - title: Jenkins (Staff)
+        url: /helpatcs_procedures_jenkins.html
         output: web, pdf
 
   - title: Projects
