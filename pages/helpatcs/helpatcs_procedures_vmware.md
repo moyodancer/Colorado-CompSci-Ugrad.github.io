@@ -45,7 +45,7 @@ The login page and licensing service is hosted at [OnTheHub VMware e5 Administra
 ![navigation with the user menu option selected](/images/vmware_onthehub/nav_users.png)
 2. Click on the Add User button at the top of the page
 ![user add and import buttons](/images/vmware_onthehub/user_add.png)
-3. Fill in the Username & Email with the student's IdentiKey email (e.g. abcd1234@colroado.edu )
+3. Fill in the Username & Email with the student's IdentiKey email (e.g. abcd1234@colroado.edu)
 ![user add username and email](/images/vmware_onthehub/user_add_email.png)
 4. Fill in the students first and last name
 ![user add username and email](/images/vmware_onthehub/user_add_name.png)
