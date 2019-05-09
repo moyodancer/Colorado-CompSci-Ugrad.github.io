@@ -39,13 +39,13 @@ entries:
       - title: Process Home
         url: /helpatcs_process.html
         output: web, pdf
-      - title: Pre-Semester
+      - title: Pre-Semester (Staff)
         url: /helpatcs_process_presemester.html
         output: web, pdf
-      - title: Semester
+      - title: Semester (Staff)
         url: /helpatcs_process_semester.html
         output: web, pdf
-      - title: Post-Semester
+      - title: Post-Semester (Staff)
         url: /helpatcs_process_postsemester.html
         output: web, pdf
 
