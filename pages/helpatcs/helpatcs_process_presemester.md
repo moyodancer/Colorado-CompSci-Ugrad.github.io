@@ -20,3 +20,7 @@ The section provides information on activities that should happen before each se
 * The accounts of users who have not accessed Moodle for > 1 year should be deleted (Admin -> Users -> Bulk operations)
 * Courses & categories more than four years old should be removed
 * Training for effective use of Moodle should be conducted at the beginning of the Fall semester with graduate TA's and faculty.  Announce this training a week in advance and work with graduate advisor on scheduling a time and room.
+
+## Coding Environment
+
+Scale up the preemptive nodes

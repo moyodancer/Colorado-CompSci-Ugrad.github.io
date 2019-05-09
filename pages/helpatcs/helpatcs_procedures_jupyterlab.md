@@ -23,3 +23,28 @@ kubectl delete pod [proxy pod name]
 ## Problem: Student container inaccessible
 
 Login to the [Hub Admin](https://coding.csel.io/hub/admin) and stop the student's container
+
+
+## Scaling Preemptive nodes
+
+1. SSH into the csel-backup server (You must be connected to the CU VPN)
+```
+ssh 35.233.171.80
+```
+OR
+```
+gcloud config set project emerald-agility-749
+gcloud compute ssh csel-backup
+```
+
+2. Switch to the csel user
+```
+sudo su - csel
+```
+
+3. Edit the scaling script
+```
+vi /home/csel/gcloud-scripts/scale-cluster/ScaleCluster.sh
+```
+
+4. Adjust MAX_SCALE_SIZE

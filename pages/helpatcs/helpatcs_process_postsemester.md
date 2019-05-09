@@ -58,3 +58,7 @@ cu-cs-moodle-backups
 * 2018-spring
 * 2018-summer
 * 2018-fall
+
+## Coding Environment
+
+Scale down the preemptive nodes
