@@ -30,6 +30,10 @@ entries:
       url: /cloud_resources_google.html
       output: web, pdf
 
+    - title: Google Cloud 4 Educators
+      url: /cloud_resources_google_educators.html
+      output: web, pdf
+
     - title: Amazon Web Services
       url: /cloud_resources_amazon.html
       output: web, pdf
