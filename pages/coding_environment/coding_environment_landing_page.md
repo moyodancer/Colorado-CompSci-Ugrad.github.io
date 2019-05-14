@@ -12,9 +12,7 @@ The CU CS Coding Environment is a cloud based service for students taking Comput
 
 ## Persistent Disk
 
-Each user of the system is assigned a 2 GigaByte (GB) disk that is will be retained between sessions.
-
-Be aware that it is your responsibility to backup the data. Unless you login every 30 days, your persistent storage may be reclaimed (deleted) and will not be recoverable.
+Each user of the system is assigned a 2 GigaByte (GB) disk that is will be retained while it is active. Unless you login every 30 days, your persistent storage may be reclaimed (deleted) and will not be recoverable. At the end of the semester the persistent disks will be deleted and all data will be destroyed. It is your responsibility to backup the data. If you have a good reason to keep the data longer than allowed by the standard policy, you can submit a request to have it retained longer by submitting a [Persistent Disk Extension Request](https://docs.google.com/forms/d/e/1FAIpQLSdyrFwLnJWINbG3ZSXckTPgxG782daiiToD6wRXdDrAxC_9Ug/viewform).
 
 ## Python Libraries
 
