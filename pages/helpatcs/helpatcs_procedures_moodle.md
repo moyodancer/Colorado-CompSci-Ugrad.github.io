@@ -351,6 +351,203 @@ build/development/scripts/deploy-all
 ```
 
 27. Test (Must be on CU VPN)
-[Moodle-dev](moodle-dev.csel.io)
-### Additional Documentation
+[Moodle-dev](https://moodle-dev.csel.io)
+
+### Additional Documentation Link(s)
+
 [https://bitbucket.org/ucbcsops/k8s-moodle/src/master/](https://bitbucket.org/ucbcsops/k8s-moodle/src/master/)
+
+
+## Backup Moodle courses
+
+1. Login to Amazon S3
+[Amazon Login](https://us-east-2.console.aws.amazon.com/console/home?region=us-east-2#)
+Account: bouldercompsci
+
+2. Navigate to S3
+[Amazon S3 Moodle Bucket](https://s3.console.aws.amazon.com/s3/buckets/cu-cs-moodle-backups/?region=us-east-2&tab=overview)
+
+3. Click the Create Folder Button
+
+4. Privide a new folder name (YYYY-semester)
+
+5. Click Save
+
+6. Connect to a Moodle pod
+```
+kubectl config use-context gke_emerald-agility-749_us-west1-a_production
+kubectl config set-context gke_emerald-agility-749_us-west1-a_production --namespace moodle-prod
+kubectl get pod | grep php
+kubectl exec -it [PHP POD NAME] /bin/bash
+```
+
+7. Move into the Moodle root
+```
+cd /srv/moodle/code
+```
+
+8. Change into the Moodle user
+```
+su -s /bin/bash www-data
+```
+
+9. Create backup location
+```
+mkdir /tmp/backups
+```
+
+10. Identify the category ID to be backed-up
+```
+/srv/moodle/moosh/moosh.php category-list
+```
+
+11. Add the backup script (replace [CATEGORY_ID] with the desired number from step 10)
+```
+cat > /tmp/backup.sh << EOF
+for COURSEID in \$( /srv/moodle/moosh/moosh.php course-list -c [CATEGORY_ID] -f id | grep  \" | tail -n +2 | tr -d \" ); do echo Processing \$COURSEID; /usr/bin/php /srv/moodle/code/admin/cli/backup.php --courseid=\$COURSEID --destination=/tmp/backups; rm -rf /srv/moodle/data/temp/backup/* ; done
+EOF
+```
+
+12. Start the backup
+```
+chmod 700 /tmp/backup.sh
+nohup /tmp/backup.sh > /tmp/nohup.txt &
+```
+
+13. Monitor progress until completion
+```
+tail -f /tmp/nohup.txt
+```
+
+
+14. Copy backups to Amazon S3
+
+
+15. Remove local backups
+```
+rm -rf /tmp/backups
+rm /tmp/backup.sh
+```
+
+## Install S3 PHP
+
+1. Go to AWS S3 PHP installation instructions
+[AWS S3 PHP Installation Instructions](https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/getting-started_installation.html)
+
+2. Download the ZIP file from under the Installing by Using the ZIP file header
+
+3. Open a terminal window
+
+4. Copy the ZIP file into a new folder
+```
+cd /tmp
+mkdir awsphp
+cd awsphp
+mv aws.zip /tmp/awsphp
+```
+
+5. Extract the ZIP
+```
+cd awsphp
+unzip aws.zip
+```
+
+6. Remove the ZIP
+```
+rm aws.zip
+```
+
+7. Recompress ZIP as Gzipped TAR in the parent directory
+```
+cd ..
+tar -cvzf /tmp/awsphp.tgz awsphp
+```
+
+8. Copy file to Moodle PHP
+```
+kubectl config use-context gke_emerald-agility-749_us-west1-a_production
+kubectl config set-context gke_emerald-agility-749_us-west1-a_production --namespace moodle-prod
+kubectl get pod | grep php
+kubectl cp awsphp.tgz [PHP POD NAME]:/tmp/
+```
+
+9. Login to a Moodle PHP container
+```
+kubectl exec -it [PHP POD NAME] /bin/bash
+```
+
+10. Decompress archive and remove
+```
+cd /tmp
+gzip -dc awsphp.tgz | tar -xvf -
+rm awsphp.tgz
+```
+
+
+## PHP S3 Upload script
+
+1. Connect to a Moodle pod
+```
+kubectl config use-context gke_emerald-agility-749_us-west1-a_production
+kubectl config set-context gke_emerald-agility-749_us-west1-a_production --namespace moodle-prod
+kubectl get pod | grep php
+kubectl exec -it [PHP POD NAME] /bin/bash
+```
+
+1. Create backup script (Key and secret must be replaced see the vault for actual values)
+```
+cat > /tmp/s3backup.php << EOF
+#!/usr/bin/env php
+<?php
+require '/tmp/awsphp/aws-autoloader.php';
+use Aws\Common\Exception\MultipartUploadException;
+use Aws\S3\MultipartUploader;
+use Aws\S3\S3Client;
+// f = filename (in current directory)
+// t = Term (e.g. 2019-spring, 2019-summer) folder name
+\$arguments = getopt('f:t:');
+\$bucket = 'cu-cs-moodle-backups';
+\$keyname = \$arguments['t'] . '/' . \$arguments['f'];                      
+\$s3 = new S3Client([
+    'version' => 'latest',
+    'region'  => 'us-west-2',
+    'credentials' => [
+        'key'    => 'ACCESS_KEY_ID',
+        'secret' => 'SECRET_ACCESS_KEY'
+    ]
+]);
+// Prepare the upload parameters.
+\$uploader = new MultipartUploader(\$s3, \$arguments['f'], [
+    'bucket' => \$bucket,
+    'key'    => \$keyname,
+    'ACL'    => 'private'
+]);
+// Perform the upload.
+try {
+    \$result = \$uploader->upload();
+    echo "Upload complete: {\$result['ObjectURL']}" . PHP_EOL;
+} catch (MultipartUploadException \$e) {
+    echo \$e->getMessage() . PHP_EOL;
+}
+?>
+EOF
+```
+
+3. Run backup script for each backup
+```
+/tmp/s3backup.php -t [TERM] -f [BACKUP_FILE_NAME]
+```
+Term from Backup Moodle courses step #4
+
+4. Login to S3
+5. Navigate to the upload location
+6. Confirm all backups are present
+7. Change Storage Class on all backup to Glacier
+8. Delete the backups
+```
+rm -rf /tmp/backups
+```
+9. Delete supporting script
+```
+rm /tmp/s3backup.php
+rm /tmp/backup.sh
