@@ -61,4 +61,6 @@ cu-cs-moodle-backups
 
 ## Coding Environment
 
-Scale down the preemptive nodes
+* Scale down the preemptive nodes
+* Notify users of persistent disk cleanup
+ * Remove persistent disks that are expired
