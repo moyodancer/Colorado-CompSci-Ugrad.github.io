@@ -551,3 +551,39 @@ rm -rf /tmp/backups
 ```
 rm /tmp/s3backup.php
 rm /tmp/backup.sh
+```
+
+## Delete a category with courses
+
+
+1. Connect to a moodle pod
+```
+kubectl config use-context gke_emerald-agility-749_us-west1-a_production
+kubectl config set-context gke_emerald-agility-749_us-west1-a_production --namespace moodle-prod
+kubectl get pod | grep php
+kubectl exec -it [PHP POD NAME] /bin/bash
+```
+
+2. Switch to the Moodle user
+```
+su -s /bin/bash www-data
+```
+
+3. Move into the Moodle code base
+```
+cd /srv/moodle/code
+```
+
+4. List existing categories
+```
+/srv/moodle/moosh/moosh.php category-list
+```
+
+5. Delete the desired category (substitue the desired category number for step 4)
+```
+/srv/moodle/moosh/moosh.php category-delete [CATEGORY_ID]
+```
+
+
+
+```category-delete
