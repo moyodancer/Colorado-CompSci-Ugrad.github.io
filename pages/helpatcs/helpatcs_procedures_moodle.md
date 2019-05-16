@@ -6,7 +6,7 @@ permalink: helpatcs_procedures_moodle.html
 folder: helpatcs
 ---
 
-## Backup/Restore/Copy Course
+## Backup/Restore/Copy Course via the Web Interface
 
 One of the more common Moodle-related admin tasks is creating new
 courses at the start of each semester.
@@ -32,10 +32,19 @@ More often than not, faculty want a copy of a previous semester's course. To cre
 You would restore the course as a new course in the new semester category. When you restore the course, insure that you're
 not also restoring the users. Once restored, modify the title and the short name to match the appropriate faculty and semester.
 
-## Backup & Archiving Course
+## Initial Command Line Environment Setup
+
+```
+gcloud auth application-default login
+gcloud config set project emerald-agility-749
+gcloud container clusters list
+gcloud container clusters get-credentials production --zone us-west1-a
+```
 
 
-We configured Google Compute to make nightly snapshots of the SQL database  
+## Restore from backup after system failure
+
+Google Compute is configured to make nightly snapshots of the SQL database  
 and Moodle data disk going back 60 days. You can view those snapshots in the project level
 dashboard (Compute Engine -> Snapshots).
 
@@ -176,14 +185,6 @@ kubectl get pod | grep smtp
 ```
 4. Resend the test email as described above to confirm it is working again
 
-## Initial Environment Setup
-
-```
-gcloud auth application-default login
-gcloud config set project emerald-agility-749
-gcloud container clusters list
-gcloud container clusters get-credentials production --zone us-west1-a
-```
 
 ## Deploy Moodle to DEV
 
@@ -457,7 +458,7 @@ unzip aws.zip
 rm aws.zip
 ```
 
-7. Recompress ZIP as Gzipped TAR in the parent directory
+7. Recompress ZIP as Gzipped TAR from the parent directory
 ```
 cd ..
 tar -cvzf /tmp/awsphp.tgz awsphp
@@ -540,9 +541,22 @@ EOF
 Term from Backup Moodle courses step #4
 
 4. Login to S3
-5. Navigate to the upload location
+5. Navigate to the term's upload location
+* The number of files is listed at the right side of the header and footer of the file list table.
+
 6. Confirm all backups are present
-7. Change Storage Class on all backup to Glacier
+    1. Login to Moodle
+    2. Click Site adminstration
+    3. Click the Courses tab
+    4. Click Manage courses and categories
+    5. Under the *Course categories* see the number at the end of the category entry and compare to the number of uploaded files in the S3 bucket's term folder.
+
+7. Change Storage Class on all backups to Glacier
+    1. Checkbox the term folder
+    2. From the Action drop-down click Change storage class
+    3. Click the Glacier radio-button
+    4. Click Save
+
 8. Delete the backups
 ```
 rm -rf /tmp/backups
@@ -555,6 +569,7 @@ rm /tmp/backup.sh
 
 ## Delete a category with courses
 
+**WARNING: This will remove a category and all the nested courses. Ensure the courses have been backed up and use with extreme caution**
 
 1. Connect to a moodle pod
 ```
@@ -579,11 +594,7 @@ cd /srv/moodle/code
 /srv/moodle/moosh/moosh.php category-list
 ```
 
-5. Delete the desired category (substitue the desired category number for step 4)
+5. Delete the desired category (Replace [CATEGORY_ID] the desired category number from step 4)
 ```
 /srv/moodle/moosh/moosh.php category-delete [CATEGORY_ID]
 ```
-
-
-
-```category-delete
