@@ -361,12 +361,14 @@ build/development/scripts/deploy-all
 
 ## Backup Moodle courses
 
+{% include note.html content="This process can required a significant amount of disk space. If insufficient disk space exists, the process may need to be deconstructed to complete the backups in stages instead of a single batch. If you do run into storage limitations, be sure to increase the size of the Moodle disk at the next upgrade window." %}
+
 1. Login to Amazon S3
-[Amazon Login](https://us-east-2.console.aws.amazon.com/console/home?region=us-east-2#)
-Account: bouldercompsci
+ * [Amazon Login](https://us-east-2.console.aws.amazon.com/console/home?region=us-east-2#)
+ * Account: bouldercompsci
 
 2. Navigate to S3
-[Amazon S3 Moodle Bucket](https://s3.console.aws.amazon.com/s3/buckets/cu-cs-moodle-backups/?region=us-east-2&tab=overview)
+ * [Amazon S3 Moodle Bucket](https://s3.console.aws.amazon.com/s3/buckets/cu-cs-moodle-backups/?region=us-east-2&tab=overview)
 
 3. Click the Create Folder Button
 
@@ -405,7 +407,7 @@ mkdir /tmp/backups
 11. Add the backup script (replace [CATEGORY_ID] with the desired number from step 10)
 ```
 cat > /tmp/backup.sh << EOF
-for COURSEID in \$( /srv/moodle/moosh/moosh.php course-list -c [CATEGORY_ID] -f id | grep  \" | tail -n +2 | tr -d \" ); do echo Processing \$COURSEID; /usr/bin/php /srv/moodle/code/admin/cli/backup.php --courseid=\$COURSEID --destination=/tmp/backups; rm -rf /srv/moodle/data/temp/backup/* ; done
+for COURSEID in \$( /srv/moodle/moosh/moosh.php course-list -c [CATEGORY_ID] -f id | grep  \" | tail -n +2 | tr -d \" ); do echo Processing \$COURSEID; /usr/bin/php /srv/moodle/code/admin/cli/backup.php --courseid=\$COURSEID --destination=/tmp/backups; rm -rf /srv/moodle/data/temp/backup/* ; rm -rf /srv/moodle/data/trashdir ; done
 EOF
 ```
 
@@ -422,7 +424,7 @@ tail -f /tmp/nohup.txt
 
 
 14. Copy backups to Amazon S3
-
+* See [PHP S3 Upload script](#php-s3-upload-script)
 
 15. Remove local backups
 ```
@@ -430,7 +432,7 @@ rm -rf /tmp/backups
 rm /tmp/backup.sh
 ```
 
-## Install S3 PHP
+## Install S3 PHP v3
 
 1. Go to AWS S3 PHP installation instructions
 [AWS S3 PHP Installation Instructions](https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/getting-started_installation.html)
@@ -487,6 +489,8 @@ rm awsphp.tgz
 
 ## PHP S3 Upload script
 
+Prerequisites: [Install S3 PHP v3](#install-s3-php-v3)
+
 1. Connect to a Moodle pod
 ```
 kubectl config use-context gke_emerald-agility-749_us-west1-a_production
@@ -495,7 +499,7 @@ kubectl get pod | grep php
 kubectl exec -it [PHP POD NAME] /bin/bash
 ```
 
-1. Create backup script (Key and secret must be replaced see the vault for actual values)
+1. Create backup script (**Key and secret must be replaced. See the vault for actual values.**)
 ```
 cat > /tmp/s3backup.php << EOF
 #!/usr/bin/env php
