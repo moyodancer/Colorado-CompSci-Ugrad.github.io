@@ -202,30 +202,49 @@ kubectl config set-context gke_csel-dev-161517_us-west1-a_development --namespac
 ```
 
 
-2. Restore the SQL development database with production data in the Cloud Console.
+2. Restore the SQL development database with production data in the [Cloud Console](https://console.cloud.google.com).
+    1. Click SQL from the left side navigation
+    2. Click moodle-mysql from the content area
+    3. Click the Backups tab
+    4. Find the most recent backup and click on the 3-dot button to its right
+    5. From the drop-down menu, click Restore
+    6. Set the Target Instance drop-down to "moodle-mysql-dev"
+    7. Click OK
 
-[Google Cloud Console](https://console.cloud.google.com)
-
-	a. ) Select SQL -> moodle-mysql -> Backups
-	b. ) Choose the most recent backup and then click Restore.
-	c. ) Select the target instance to "moodle-mysql-dev"
-
-3. Restore the Moodle data disk. This process is not ideal but Google Compute does not allow you to access snapshot disks across projects, however, it does allow you to share images. So we first create an image from a snapshot and share this with the development project.
-
-	a. ) Create an Image of the most recent moodle-data-disk-ssd
-		i.  ) Compute Engine -> Images -> Create Image (use defaults except for options below)
-			a. ) Name it moodle-data-disk-ssd-image-YYYYMMDD
-			b. ) Source from snapshot. Use the latest snapshot which is an epoch date.
-			c. ) Create Image
-      d. ) Once the image has been created, copy the the selflink path. This can be found Compute Engine -> Images -> Click your Image Name -> Click Equivalent REST -> Copy selflink path. You will need this for next step.
-
-	b.)  Create a new moodle-data-disk-ssd in development.
-		i.  ) First you must delete the moodle-data-disk-ssd in development. Be sure you are in the development project!!!
-			a. ) Compute Engine -> Disks -> Select Disk -> Click Delete
-		ii. ) Create the new moodle-data-disk-ssd
-			```gcloud compute disks create moodle-data-disk-ssd --image=$SELFLINKPATH --zone=us-west1-a```
-		iii.  ) Confirm disk is available. Compute Engine -> Disks
-
+3. Restore the Moodle data disk.
+* This process is not ideal but Google Compute does not allow you to access snapshot disks across projects, however, it does allow you to share images. So we first create an image from a snapshot and share this with the development project.
+    1. Create an Image of the most recent moodle-data-disk-ssd
+        1. Click the project name at the top of the page
+        2. In the Select From drop-down, select No organization
+        3. Click CSEL from the project list
+        4. Click Compute Engine from the left side navigation
+        5. Click Images from the left side navigation
+        6. Create Create Image from the top tool bar
+        7. Name the image moodle-data-disk-ssd-image-YYYYMMDD
+        8. From the Source drop-down, select Snapshot
+        9. In the Source snapshot drop-down, select the gcs-moodle-data-disk-ssd-moodle-data-XXXXXX with the largest number
+        10. Click the Create button at the bottom of the form
+        11. Wait for the image to be created
+    2. Find the selflink path for the new image
+        1. Click Compute Engine from the left side navigation
+        2. Click Images from the left side navigation
+        3. Click on the name of the image from step 1-4
+        4. Click Equivalent REST at the bottom of the page
+        5. Find the "selfLink" value and copy it for use in creating the new disk
+    3. Delete the existing moodle-data-disk-ssd in Development
+		    1. Click the project name at the top of the page
+        2. In the Select From drop-down, select colorado.edu
+        3. Click CSEL-DEV from the project list
+        4. From the left navigation, Click Disks (under Compute Engine)
+        5. **Double check that you are in the CSEL-DEV project**
+        6. Find the moodle-data-disk-ssd
+        7. Click the 3-dot button to the right
+        8. Click Delete from the drop-down menu
+				9. **Triple check that you are in the CSEL-DEV project**
+				10. Click the Delete button
+    4. Create a new moodle-data-disk-ssd in development.
+        1. Run the same window you preformed step 1, run the following command after replacing [SELFLINK_PATH] with the selflink path captured when creating the new image
+        2. ```gcloud compute disks create moodle-data-disk-ssd --image=[SELFLINK_PATH] --zone=us-west1-a```
 
 4. Clone the Moodle repo (or pull updates if you already have it)
 ```
@@ -238,7 +257,7 @@ git clone git@bitbucket.org:ucbcsops/registry.git
 ```
 
 6. Determine the stable version of Moodle for the upgrade
-[https://download.moodle.org/releases/latest/])(https://download.moodle.org/releases/latest/)
+[https://download.moodle.org/releases/latest/](https://download.moodle.org/releases/latest/)
 
 7. Edit the develop variables file
 ```
@@ -247,7 +266,7 @@ vi environments/development/variables.conf
 ```
 
 8. Change the JENKINS_BUILD variable to match the desired version number and set the build number
-Note: Change version number to match what you found in step #3
+Note: Change version number to match what you found in step 3 and the revision number (-1) should match the build number in Jenkins.
 ```
 export JENKINS_BUILD=development3.6.3-1
 ```
@@ -302,56 +321,91 @@ mv remuiformat remuiformat_3.6.2
 rm *.zip
 ```
 
-18. Edit the Moodle-ucbcs Dockerfile
+18. Force hiding of the local login option
 ```
-vi ../Dockerfile
+vi remui_3.6.2/classes/output/core_renderer.php
 ```
 
-19. Modify the theme paths
+19. Find the login box text
 ```
-ADD theme/remui_3.6.2_ucbcs_custom ${MOODLE_CODE_DIR}/theme/remui
+// sign in popup
+```
+
+20. Add the style the form tag
+```html
+style="display: none"
+```
+
+21. Edit the Moodle-ucbcs header fragment
+```
+vi ../fragments/0-header.fragment
+```
+
+22. Modify the theme paths
+```
+ADD theme/remui_3.6.2 ${MOODLE_CODE_DIR}/theme/remui
 ADD theme/remuiblck_3.6.2 ${MOODLE_CODE_DIR}/blocks/remuiblck
 ADD theme/remuiformat_3.6.2 ${MOODLE_CODE_DIR}/course/format/remuiformat
 ```
 
-20. Change into the k8s-moodle directory
+23. Change into the k8s-moodle directory
 ```
 cd ../../../k8s-moodle
 ```
 
-21. Fix permissions on namespace scripts
+24. Fix permissions on namespace scripts
 ```
 chmod 750 build/development/namespace/*
 ```
 
 
-22. Check Jenkins for build completion (Must be on CU VPN)
- [Jenkins](https://ci.csel.io/)
+25. Check [Jenkins](https://ci.csel.io/) for build completion (Must be on CU VPN)
 
-23. Tear down all services in DEV
- ```
- k8s-moodle/build/development/scripts/tear-down-all
- ```
- Note: a remaining cluster node is okay
 
- 24. Ensure all pods are gone
- ```
- kubectl get pod
- ```
-
-25. Build the environment
+26. Tear down all services in DEV
 ```
-cd k8s-moodle
+build/development/scripts/tear-down-all
+```
+Note: a remaining cluster node is okay
+
+27. Ensure all pods are gone
+```
+kubectl get pod
+```
+
+28. Build the environment
+```
 ./build-env development
-cd ..
 ```
 
-26. Deploy the environment
+29. Verify environment data
+> [1] stage: load environment data
+>        - checking for environment folder at environments/development...
+>        - variables file found, attempting to load it...
+>        - all variables successfully loaded:
+>
+>          - environment hostname: moodle-dev.csel.io
+>          - container registry  : gcr.io/csel-dev-161517
+>          - load balancer addr  : 35.185.192.128
+>          - k8s target namespace: development`
+
+30. Verify NFS IP is sane
+> [4] stage: create NFS service to obtain IP
+>       - templating the NFS service configuration file only...
+>       - single file created at build/development/workloads/nfs/svc.yaml
+>       - creating the NFS server service...
+>         - kubectl: service "nfs-server" created
+>       - attempting to obtain the NFS service IP address...
+>         - service address: 10.43.250.93
+
+31. Deploy the environment
 ```
 build/development/scripts/deploy-all
 ```
 
-27. Test (Must be on CU VPN)
+Error messages about NFS already existing are okay/expected.
+
+32. Test (Must be on CU VPN)
 [Moodle-dev](https://moodle-dev.csel.io)
 
 ### Additional Documentation Link(s)
