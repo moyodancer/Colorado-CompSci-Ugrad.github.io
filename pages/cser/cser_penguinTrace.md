@@ -32,8 +32,9 @@ Once you have started penguinTrace, simply point your web browser to [127.0.0.1:
 
 ## Managing penguinTrace
 In the terminal window, you can use the following keys to control the running container
-
->   Commands:
->    q - Shutdown server
->    l - List active sessions
->    k - Kill all active sessions
+```
+ Commands:
+  q - Shutdown server
+  l - List active sessions
+  k - Kill all active sessions
+```
