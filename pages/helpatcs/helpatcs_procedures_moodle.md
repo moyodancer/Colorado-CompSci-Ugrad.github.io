@@ -93,6 +93,7 @@ tar -cvzf moosh.tgz moosh
 ```
 4. Find a php-fpm pod to work with
 ```
+gcloud config set project emerald-agility-749
 kubectl config use-context gke_emerald-agility-749_us-west1-a_production
 kubectl config set-context gke_emerald-agility-749_us-west1-a_production --namespace moodle-prod
 kubectl get pod | grep php-fpm
@@ -126,6 +127,7 @@ There are large courses in Moodle that cannot be completed using the web interfa
 
 1. Login to a php-fpm pod
 ```
+gcloud config set project emerald-agility-749
 kubectl config use-context gke_emerald-agility-749_us-west1-a_production
 kubectl config set-context gke_emerald-agility-749_us-west1-a_production --namespace moodle-prod
 kubectl get pod | grep php-fpm
@@ -171,6 +173,7 @@ From time to time, Moodle is unable to send out the regular email notifications.
 If the next page is not Success, follow the steps below to restart the SMTP pod.
 1. Identify the SMTP pod
 ```
+gcloud config set project emerald-agility-749
 kubectl config use-context gke_emerald-agility-749_us-west1-a_production
 kubectl config set-context gke_emerald-agility-749_us-west1-a_production --namespace moodle-prod
 kubectl get pod | grep smtp
@@ -413,6 +416,37 @@ Error messages about NFS already existing are okay/expected.
 [https://bitbucket.org/ucbcsops/k8s-moodle/src/master/](https://bitbucket.org/ucbcsops/k8s-moodle/src/master/)
 
 
+## Moodle DEV testing checklist
+* QA Test
+* NFS Data Mount
+* Run Benchmark
+* Code Runner
+* Course Content (Y)
+* Qngine
+* Quiz Content
+* Shib Login/Logout
+* Manual Login/Logout
+* Course Category
+* Course Page
+* Grades
+* Participants
+* Enroll Users
+* Dashboard
+* LTI
+* STACK
+* H5P
+* Turn Editing On (Teacher)
+* Calendar
+* Change Roles
+* Add Resource in Course
+* Site Admin Console
+* Memchached (Clear)
+* PHP Config Lib
+* Email
+* Create Test Course
+* Backup Course
+* Restore Course
+
 ## Backup Moodle courses
 
 {% include note.html content="This process can required a significant amount of disk space. If insufficient disk space exists, the process may need to be deconstructed to complete the backups in stages instead of a single batch. If you do run into storage limitations, be sure to increase the size of the Moodle disk at the next upgrade window." %}
@@ -432,6 +466,7 @@ Error messages about NFS already existing are okay/expected.
 
 6. Connect to a Moodle pod
 ```
+gcloud config set project emerald-agility-749
 kubectl config use-context gke_emerald-agility-749_us-west1-a_production
 kubectl config set-context gke_emerald-agility-749_us-west1-a_production --namespace moodle-prod
 kubectl get pod | grep php
@@ -522,6 +557,7 @@ tar -cvzf /tmp/awsphp.tgz awsphp
 
 8. Copy file to Moodle PHP
 ```
+gcloud config set project emerald-agility-749
 kubectl config use-context gke_emerald-agility-749_us-west1-a_production
 kubectl config set-context gke_emerald-agility-749_us-west1-a_production --namespace moodle-prod
 kubectl get pod | grep php
@@ -547,6 +583,7 @@ Prerequisites: [Install S3 PHP v3](#install-s3-php-v3)
 
 1. Connect to a Moodle pod
 ```
+gcloud config set project emerald-agility-749
 kubectl config use-context gke_emerald-agility-749_us-west1-a_production
 kubectl config set-context gke_emerald-agility-749_us-west1-a_production --namespace moodle-prod
 kubectl get pod | grep php
@@ -631,6 +668,7 @@ rm /tmp/backup.sh
 
 1. Connect to a moodle pod
 ```
+gcloud config set project emerald-agility-749
 kubectl config use-context gke_emerald-agility-749_us-west1-a_production
 kubectl config set-context gke_emerald-agility-749_us-west1-a_production --namespace moodle-prod
 kubectl get pod | grep php
