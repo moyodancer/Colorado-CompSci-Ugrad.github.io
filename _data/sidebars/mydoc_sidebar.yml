@@ -74,6 +74,10 @@ entries:
       url: /cser_cs_vm.html
       output: web, pdf
 
+    - title: penguinTrace
+      url: /cser_penguinTrace.html
+      output: web, pdf
+
   - title: Other Information
     output: web, pdf
     folderitems:
