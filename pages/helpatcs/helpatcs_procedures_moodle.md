@@ -247,20 +247,20 @@ kubectl config set-context gke_csel-dev-161517_us-west1-a_development --namespac
 				10. Click the Delete button
     4. Create a new moodle-data-disk-ssd in development.
         1. Run the same window you preformed step 1, run the following command after replacing [SELFLINK_PATH] with the selflink path captured when creating the new image
-        2. ```gcloud compute disks create moodle-data-disk-ssd --image=[SELFLINK_PATH] --zone=us-west1-a```
+        2. ```gcloud compute disks create moodle-data-disk-ssd --zone=us-west1-a --image=[SELFLINK_PATH]```
 
-4. Clone the Moodle repo (or pull updates if you already have it)
+4. Determine the stable version of Moodle for the upgrade
+[https://download.moodle.org/releases/latest/](https://download.moodle.org/releases/latest/)
+
+5. Clone the Moodle repo (or pull updates if you already have it)
 ```
 git clone git@bitbucket.org:ucbcsops/k8s-moodle.git
 ```
 
-5. Clone the Registry (or pull update if you already have it)
+6. Clone the Registry (or pull update if you already have it)
 ```
 git clone git@bitbucket.org:ucbcsops/registry.git
 ```
-
-6. Determine the stable version of Moodle for the upgrade
-[https://download.moodle.org/releases/latest/](https://download.moodle.org/releases/latest/)
 
 7. Edit the develop variables file
 ```
@@ -276,42 +276,52 @@ export JENKINS_BUILD=development3.6.3-1
 
 9. Push the change to bitbucket
 ```
+git add environments/development/variables.conf
+git commit -m "Update Jenkins build number"
 git push
 cd ..
 ```
 
-10. Edit the Moodle-base Dockerfile
+10. Create a development branch of the registry
+Note: Change version number to match
 ```
-vi registry/moodle-base/Dockerfile
+cd registry
+git checkout -b development3.6.3
 ```
 
-11. Change the Moodle version to match the desired version number
+
+11. Edit the Moodle-base Dockerfile
+```
+vi moodle-base/Dockerfile
+```
+
+12. Change the Moodle version to match the desired version number
 Note: Change version number to match what you found in step #3
 ```
 ENV MOODLE_VERSION v3.6.3
 ```
 
-12. Download the matching (or most recent) REMUI theme (as needed) to registry/moodle-ucbcs/theme
+13. Download the matching (or most recent) REMUI theme (as needed) to registry/moodle-ucbcs/theme
 [EdWiser](https://edwiser.org/my-account/)
 
-13. Change into the theme directory
+14. Change into the theme directory
 ```
-cd registry/moodle-ucbcs/theme
+cd moodle-ucbcs/theme
 ```
 
-14. Unzip the new Theme
+15. Unzip the new Theme
 ```
 unzip Edwiser_Remui_3_443e8cd7b289e3d44.zip
 ```
 
-15. Unzip each of the nested Zip files
+16. Unzip each of the nested Zip files
 ```
 unzip Edwiser_Course_Formats_v1.0.0.zip
 unzip edwiser_remui_3.6.2.zip
 unzip edwiser_remui_block_1.0.3.zip
 ```
 
-16. Move each into a versioned folder
+17. Move each into a versioned folder
 Note: REMUI 3.6.2 was the latest version when this was written
 ```
 mv remui remui_3.6.2
@@ -319,69 +329,79 @@ mv remuiblck remuiblck_3.6.2
 mv remuiformat remuiformat_3.6.2
 ```
 
-17. Cleanup zip files
+18. Cleanup zip files
 ```
 rm *.zip
 ```
 
-18. Force hiding of the local login option
+19. Force hiding of the local login option
 ```
 vi remui_3.6.2/classes/output/core_renderer.php
 ```
 
-19. Find the login box text
+20. Find the login box text
 ```
 // sign in popup
 ```
 
-20. Add the style the form tag
+21. Add the style the form tag
 ```html
 style="display: none"
 ```
 
-21. Edit the Moodle-ucbcs header fragment
+22. Edit the Moodle-ucbcs header fragment
 ```
 vi ../fragments/0-header.fragment
 ```
 
-22. Modify the theme paths
+23. Modify the theme paths
 ```
 ADD theme/remui_3.6.2 ${MOODLE_CODE_DIR}/theme/remui
 ADD theme/remuiblck_3.6.2 ${MOODLE_CODE_DIR}/blocks/remuiblck
 ADD theme/remuiformat_3.6.2 ${MOODLE_CODE_DIR}/course/format/remuiformat
 ```
 
-23. Change into the k8s-moodle directory
+24. Push branch to repo
+```
+cd ../..
+git add .
+git commit -m "Moodle DEV upgrade"
+git push --set-upstream origin development3.6.2
+```
+
+25. Change into the k8s-moodle directory
 ```
 cd ../../../k8s-moodle
 ```
 
-24. Fix permissions on namespace scripts
+26. Fix permissions on scripts
 ```
 chmod 750 build/development/namespace/*
+chmod 750 build/development/scripts/*
 ```
 
 
-25. Check [Jenkins](https://ci.csel.io/) for build completion (Must be on CU VPN)
+27. Check [Jenkins](https://ci.csel.io/) for build completion (Must be on CU VPN)
 
 
-26. Tear down all services in DEV
+28. Tear down all services in DEV
 ```
 build/development/scripts/tear-down-all
 ```
 Note: a remaining cluster node is okay
 
-27. Ensure all pods are gone
+29. Ensure all pods are gone
 ```
 kubectl get pod
 ```
 
-28. Build the environment
+30. Build the environment
 ```
 ./build-env development
 ```
 
-29. Verify environment data
+31. Verify environment data
+```
 > [1] stage: load environment data
 >        - checking for environment folder at environments/development...
 >        - variables file found, attempting to load it...
@@ -391,8 +411,10 @@ kubectl get pod
 >          - container registry  : gcr.io/csel-dev-161517
 >          - load balancer addr  : 35.185.192.128
 >          - k8s target namespace: development`
+```
 
-30. Verify NFS IP is sane
+32. Verify NFS IP is sane
+```
 > [4] stage: create NFS service to obtain IP
 >       - templating the NFS service configuration file only...
 >       - single file created at build/development/workloads/nfs/svc.yaml
@@ -400,15 +422,16 @@ kubectl get pod
 >         - kubectl: service "nfs-server" created
 >       - attempting to obtain the NFS service IP address...
 >         - service address: 10.43.250.93
+```
 
-31. Deploy the environment
+33. Deploy the environment
 ```
 build/development/scripts/deploy-all
 ```
 
 Error messages about NFS already existing are okay/expected.
 
-32. Test (Must be on CU VPN)
+34. Test (Must be on CU VPN)
 [Moodle-dev](https://moodle-dev.csel.io)
 
 ### Additional Documentation Link(s)
@@ -693,4 +716,24 @@ cd /srv/moodle/code
 5. Delete the desired category (Replace [CATEGORY_ID] the desired category number from step 4)
 ```
 /srv/moodle/moosh/moosh.php category-delete [CATEGORY_ID]
+```
+
+## Expand Moodle data disk
+
+1. Using GCP console or gcloud CLI, increase the size of the *moodle-data-disk-ssd*
+2. Login to the NFS pod
+```
+gcloud config set project emerald-agility-749
+kubectl config use-context gke_emerald-agility-749_us-west1-a_production
+kubectl config set-context gke_emerald-agility-749_us-west1-a_production --namespace moodle-prod
+kubectl get pod | grep nfs
+kubectl exec -it [PHP POD NAME] /bin/bash
+```
+3. Find the moodle data disk device
+```
+df -h | grep exports
+```
+4. Resize data disk (replace [DEVICE] with value from step 3)
+```
+resize2fs /dev/[DEVICE]
 ```
