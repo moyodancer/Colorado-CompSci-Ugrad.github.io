@@ -73,6 +73,9 @@ entries:
       - title: Jenkins (Staff)
         url: /helpatcs_procedures_jenkins.html
         output: web, pdf
+      - title: Fleet
+        url: /helpatcs_procedures_fleet.html
+        output: web, pdf
 
   - title: Projects
     output: web, pdf
