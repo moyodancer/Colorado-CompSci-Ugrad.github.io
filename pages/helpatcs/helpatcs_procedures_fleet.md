@@ -10,6 +10,9 @@ folder: helpatcs
 
 Fleet is a docker management system (like modern Kubernetes) that runs many of the CS underlying services
 
+## Documentation
+[https://coreos.com/fleet/docs/latest/](https://coreos.com/fleet/docs/latest/)
+
 ## Commands
 ```
 fleetctl list-units
@@ -25,4 +28,11 @@ systemctl restart fleet.service
 ```
 docker ps
 docker exec -it [CONTAINER_ID] /bin/bash
+```
+
+## Update a unit file
+Update service file, and then:
+```
+fleetctl destroy [NAME].service
+fleetctl submit [NAME].service
 ```
