@@ -56,6 +56,7 @@ test
 
 1. Setup the session environment
 ```
+gcloud config set project emerald-agility-749
 kubectl config use-context gke_emerald-agility-749_us-west1-a_jupyterhub-campus
 kubectl config set-context gke_emerald-agility-749_us-west1-a_jupyterhub-campus --namespace jupyterhub-campus
 ```
