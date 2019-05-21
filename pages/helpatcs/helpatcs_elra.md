@@ -1,10 +1,11 @@
 ---
-title: ELRA
-keywords: elra, shell, csel, Computer Science Education Lab
+title: Computer Science Education Lab (CSEL) ELRA
+keywords: elra, shell, csel
 sidebar: helpatcs_sidebar
 permalink: helpatcs_elra.html
 folder: helpatcs
 ---
+
 
 ## Remote Access
 
