@@ -32,6 +32,9 @@ entries:
   - title: Documents
     output: web, pdf
     folderitems:
+        - title: Support
+          url: /helpatcs_support.html
+          output: web, pdf
         - title: Service Level Agreement (SLA)
           url: /helpatcs_sla.html
           output: web, pdf
