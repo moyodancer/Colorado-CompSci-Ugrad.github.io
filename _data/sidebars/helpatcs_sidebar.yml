@@ -24,7 +24,10 @@ entries:
     folderitems:
     - title: Help@CS home
       url: /helpatcs_landing_page.html
-      output: web
+      output: web, pdf
+    - title: ELRA
+      url: /helpatcs_elra.html
+      output: web, pdf
 
   - title: Documents
     output: web, pdf
