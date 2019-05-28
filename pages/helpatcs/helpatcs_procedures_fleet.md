@@ -1,6 +1,6 @@
 ---
 title: Help@CS Fleet
-keywords: procedure, fleet
+keywords: procedure, fleet, staff
 sidebar: helpatcs_sidebar
 permalink: helpatcs_procedures_fleet.html
 folder: helpatcs

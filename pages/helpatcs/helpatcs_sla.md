@@ -38,7 +38,7 @@ and computing devices, including:
   CS RT Ticketing                                            |Infrastructure
   VMWare Licensing and VM Image and support                  |Web-based
   OpenStack Cloud                                            |Infrastructure
-  Linux shared "elra" virtual machines                       |Infrastructure
+  Linux shared (ELRA) virtual machines                       |Infrastructure
 
 CS support also includes training, recommendations, maintenance,
 testing, troubleshooting, and availability of CS services within
@@ -105,4 +105,4 @@ email ticketing system. CS Help help@cs.colorado.edu
   CS RT Ticketing                                            |4 hours
   VMWare Licensing and VM Image and support                  |2 business days
   OpenStack Cloud                                            |1 business day
-  Linux shared "elra" virtual machines                       |4 hours
+  Linux shared (ELRA) virtual machines                       |4 hours

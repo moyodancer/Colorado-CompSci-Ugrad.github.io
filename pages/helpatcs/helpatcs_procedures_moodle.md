@@ -685,6 +685,65 @@ rm /tmp/s3backup.php
 rm /tmp/backup.sh
 ```
 
+## PHP S3 Download script
+
+Prerequisites: [Install S3 PHP v3](#install-s3-php-v3)
+
+1. Connect to a Moodle pod
+```
+gcloud config set project emerald-agility-749
+kubectl config use-context gke_emerald-agility-749_us-west1-a_production
+kubectl config set-context gke_emerald-agility-749_us-west1-a_production --namespace moodle-prod
+kubectl get pod | grep php
+kubectl exec -it [PHP POD NAME] /bin/bash
+```
+
+1. Create backup script (**Key and secret must be replaced. See the vault for actual values.**)
+```
+cat > /tmp/s3download.php << EOF
+#!/usr/bin/env php
+<?php
+require '/tmp/awsphp/aws-autoloader.php';
+use Aws\S3\S3Client;  
+use Aws\Exception\AwsException;
+\$arguments = getopt('f:t:');
+if (count(\$arguments) != 2) {
+    echo "\n\nGetObject.php -t <yyyy-term> -f <filename>\n\n";
+    exit();
+}
+\$bucket = 'cu-cs-moodle-backups';
+\$keyname = \$arguments['t'] . '/' . \$arguments['f'];                      
+try {
+  \$s3 = new S3Client([
+    'version' => 'latest',
+    'region'  => 'us-west-2',
+    'credentials' => [
+        'key'    => 'ACCESS_KEY_ID',
+        'secret' => 'SECRET_ACCESS_KEY'
+    ]
+  ]);
+	\$result = \$s3->getObject(array(
+	        'Bucket' => \$bucket,
+	        'Key' => \$keyname,
+	        'SaveAs' => \$arguments['f']
+	    ));
+} catch (S3Exception \$e) {
+    echo \$e->getMessage() . "\n";
+}
+?>
+EOF
+```
+3. Make the script executable
+```
+chmod 700 /tmp/s3download.php
+```
+
+4. Run backup script for each backup
+```
+/tmp/s3download.php -t [TERM] -f [BACKUP_FILE_NAME]
+```
+
+
 ## Delete a category with courses
 
 **WARNING: This will remove a category and all the nested courses. Ensure the courses have been backed up and use with extreme caution**
