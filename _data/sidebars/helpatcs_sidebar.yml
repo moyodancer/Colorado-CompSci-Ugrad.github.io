@@ -67,6 +67,9 @@ entries:
       - title: Moodle (Staff)
         url: /helpatcs_procedures_moodle.html
         output: web, pdf
+      - title: Applied Moodle (Staff)
+        url: /helpatcs_procedures_applied.html
+        output: web, pdf
       - title: csel.io Domain (Staff)
         url: /helpatcs_procedures_cselio.html
         output: web, pdf
@@ -79,8 +82,11 @@ entries:
       - title: Jenkins (Staff)
         url: /helpatcs_procedures_jenkins.html
         output: web, pdf
-      - title: Fleet
+      - title: Fleet (Staff)
         url: /helpatcs_procedures_fleet.html
+        output: web, pdf
+      - title: Icinga Monitoring (Staff)
+        url: /helpatcs_procedures_icinga.html
         output: web, pdf
 
   - title: Projects
