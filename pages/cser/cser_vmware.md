@@ -9,12 +9,13 @@ folder: cser
 
 {% include note.html content="Most classes should be able to use the <a href='/coding_environment_landing_page.html'>Coding Environment</a> but students may still need VMware for certain classes (e.g. operating systems). Outside of class, modern work practices make extensive use of virtual machines and can also use these tools for your own projects and learning." %}
 
-
 ## Obtaining a license key for VMware
 
 Please send an email to [help@cs.colorado.edu](mailto:help@cs.colorado.edu?subject=VMware license rquest) and include you IdentiKey username. Once the registration is complete, you will receive an  email from "University of Colorado - Department of Computer Science" with the subject line "An account has been created for you". Follow the instructions in this email to complete your registration. Once you are registered and logged in, you can access the software downloads page.
 
-To return to this store in the future, retain a copy of either the registration email or the subsequent account confirmation email and use the link inside to access the webstore. If you see an error message about already being registered or that there are no products to display, click the sign in link near the top right of the page and log in with your identikey@colorado.edu email address and the password you set when you registered the account on the webstore.
+To return to this store in the future, retain a copy of either the registration email or the subsequent account confirmation email and use the link inside to access the webstore. The actual sender of that email will be "noreply@kivuto.com" -- the software distribution is managed by Kivuto, and the [registration page can be reached at this link](https://e5.onthehub.com/WebStore/Security/Signin.aspx?ws=90ca0f46-e530-de11-a497-0030485a8df0&vsro=8&rurl=%2fWebStore%2fProductsByMajorVersionList.aspx%3fcmi_cs%3d1%26cmi_mnuMain%3d16a020b5-ed3c-df11-b4ab-0030487d8897%26ws%3d90ca0f46-e530-de11-a497-0030485a8df0%26vsro%3d8).
+
+If you see an error message about already being registered or that there are no products to display, click the sign in link near the top right of the page and log in with your identikey@colorado.edu email address and the password you set when you registered the account on the webstore.
 
 Returning Students: You can access the webstore through the link in your email from last semester and log in with the same account details. If you already have VMware Workstation or VMware Fusion installed and running on your PC, then you do not need to update and can simply install the new version of our VM into your existing VMware installation.
 
