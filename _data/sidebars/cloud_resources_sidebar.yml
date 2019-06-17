@@ -26,11 +26,15 @@ entries:
       url: /cloud_resources_landing_page.html
       output: web
 
+    - title: Google Colaboratory
+      url: /cloud_resources_colaboratory.html
+      output: web, pdf
+
     - title: Google Cloud
       url: /cloud_resources_google.html
       output: web, pdf
 
-    - title: Google Cloud 4 Educators
+    - title: Google Cloud for Educators
       url: /cloud_resources_google_educators.html
       output: web, pdf
 
