@@ -88,6 +88,9 @@ entries:
       - title: Icinga Monitoring (Staff)
         url: /helpatcs_procedures_icinga.html
         output: web, pdf
+      - title: INGInious
+        url: /helpatcs_procedures_inginious.html
+        output: web, pdf
 
   - title: Projects
     output: web, pdf
