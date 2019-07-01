@@ -796,3 +796,13 @@ df -h | grep exports
 ```
 resize2fs /dev/[DEVICE]
 ```
+
+
+## REMUI Update Nag Removal
+Use this Custom CSS code in Custom CSS section inside Edwiser RemUI general settings-
+
+```
+.update-nag {
+display:none
+}
+```
