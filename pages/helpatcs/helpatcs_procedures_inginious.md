@@ -30,5 +30,5 @@ cd /home/inginious/inginious
 ## Stopping (As the inginious user)
 
 ```
-kill uwsgi
+pkill uwsgi
 ```
