@@ -14,7 +14,7 @@ Hosted by Fleet:
 ```
 docker ps
 docker exec -it [CONTAINTER_ID] /bin/bash
-``
+```
 
 Configuration files are:
 ```
