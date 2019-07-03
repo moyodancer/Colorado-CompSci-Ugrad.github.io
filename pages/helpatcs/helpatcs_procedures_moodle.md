@@ -806,3 +806,26 @@ Use this Custom CSS code in Custom CSS section inside Edwiser RemUI general sett
 display:none
 }
 ```
+
+## Manual SSL Certificate Refresh (Let's Encrypt)
+1. Connect to a Moodle pod
+```
+gcloud config set project emerald-agility-749
+kubectl config use-context gke_emerald-agility-749_us-west1-a_production
+kubectl config set-context gke_emerald-agility-749_us-west1-a_production --namespace moodle-prod
+kubectl get pod | grep letsencrypt
+kubectl exec -it [POD NAME] /bin/bash
+```
+2. Move into the script directory
+```
+cd /opt
+```
+
+3. Execute the update script
+```
+./gen_le_cert.sh
+```
+
+4. Reload the moodle webpage and confirm the new certificate is active
+
+Alternatively, test it with a service like [SSL Labs](https://www.ssllabs.com/ssltest/)
