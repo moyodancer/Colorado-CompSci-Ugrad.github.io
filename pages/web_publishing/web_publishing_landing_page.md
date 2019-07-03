@@ -14,4 +14,3 @@ that can provide additional help.
 
 Some of the resources require authentication and controlled access; others
 are more generally available.
-

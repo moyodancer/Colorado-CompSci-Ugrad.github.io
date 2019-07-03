@@ -2,8 +2,8 @@
 title: Updating This Site
 keywords: faq
 sidebar: mydoc_sidebar
-permalink: update_this_site.html
-folder: web_publishing_resources
+permalink: web_publishing_update_this_site.html
+folder: web_publishing
 ---
 
 ## Introduction
@@ -28,4 +28,3 @@ once folks and arrived at a consensus on a requested change.
 
 This FAQ uses the [documentation jekyll theme](https://idratherbewriting.com/documentation-theme-jekyll/) and documentation
 for that theme is included at the theme site.
-

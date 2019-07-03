@@ -2,8 +2,8 @@
 title: Using github.io websites @ CU
 keywords: faq
 sidebar: mydoc_sidebar
-permalink: using_github_io.html
-folder: web_publishing_resources
+permalink: web_publishing_using_github_io.html
+folder: web_publishing
 ---
 
 ## Introduction
@@ -26,7 +26,7 @@ Examples include:
 * [http://plv.colorado.edu](http://plv.colorado.edu)
 
 Alternatively, many research labs purchase their own domain. An example is
-[http://www.cairo-lab.com/](http://www.cairo-lab.com/) -- 
+[http://www.cairo-lab.com/](http://www.cairo-lab.com/) --
 in that case, you should skip this writeup and go to the GitHub pages
 documentation directly.
 
@@ -34,7 +34,7 @@ documentation directly.
 
 Follow these steps:
 * Insure that your web page relates to university functions and broadly follows
-university branding standards. 
+university branding standards.
 
 * Choose a domain name that is not in use. You can use the `dig` or `nslookup`
 tool for this pupose.
