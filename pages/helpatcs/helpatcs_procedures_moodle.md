@@ -829,3 +829,30 @@ cd /opt
 4. Reload the moodle webpage and confirm the new certificate is active
 
 Alternatively, test it with a service like [SSL Labs](https://www.ssllabs.com/ssltest/)
+
+## Problem: Email sends, but is not delivered
+
+There could be many possible problems, and here we will look at how to determine the root cause.
+
+1. Connect to a Moodle pod
+```
+gcloud config set project emerald-agility-749
+kubectl config use-context gke_emerald-agility-749_us-west1-a_production
+kubectl config set-context gke_emerald-agility-749_us-west1-a_production --namespace moodle-prod
+kubectl get pod | grep smtp
+kubectl exec -it [POD NAME] /bin/sh
+```
+
+2. Find the deferred mail spool
+```
+cd /var/spool/postfix/defer
+```
+3. Select a queue
+```
+ls
+cd [AnyQueue]
+ls
+cat [AnyMessage]
+```
+
+4. Examine the message file contents for **reason=**
