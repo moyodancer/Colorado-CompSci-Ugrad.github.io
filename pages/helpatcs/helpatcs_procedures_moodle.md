@@ -856,3 +856,12 @@ cat [AnyMessage]
 ```
 
 4. Examine the message file contents for **reason=**
+
+5. Check external IP
+```
+cd /tmp
+wget https://ipchicken.com/
+cat index.html  | grep -A 1 Address
+rm index.html
+```
+This address should match the EndPoint IP in the cloud console
