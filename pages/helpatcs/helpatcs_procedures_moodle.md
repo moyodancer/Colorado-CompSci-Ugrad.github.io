@@ -864,4 +864,4 @@ wget https://ipchicken.com/
 cat index.html  | grep -A 1 Address
 rm index.html
 ```
-This address should match the EndPoint IP in the cloud console
+This address should be 104.198.9.1 (if not assign that IP to the node Moodle node)
