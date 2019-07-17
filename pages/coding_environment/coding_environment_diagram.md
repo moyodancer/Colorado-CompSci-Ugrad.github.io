@@ -11,7 +11,7 @@ folder: coding_environment
 The Diagram feature of the Coding Environment provides a workspace to
 create flowcharts, UML models, and other planning documents. The
 diagram editor is based on the well-known [Draw.io](https://draw.io)
-in-browser javascript ditor editor.
+in-browser javascript editor editor.
 
 ### Tutorial Video
 
