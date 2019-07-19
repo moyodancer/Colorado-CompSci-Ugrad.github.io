@@ -865,3 +865,18 @@ cat index.html  | grep -A 1 Address
 rm index.html
 ```
 This address should be 104.198.9.1 (if not assign that IP to the node Moodle node)
+
+## Alert! License is not activated , please activate the license in RemUI settings.
+1. Login to Moodle
+2. Navigate to Edwiser RemUI settings > License Status
+3. Click the Activate License button
+
+If that does not resolve the problem do the following and contact EdWiser
+1. Navigate to Edwiser RemUI settings > General settings
+2. In the **Custom CSS section** add the following
+```
+.license-nag {
+  display:none;
+}
+```
+3. Click the **Save changes** button at the bottom of the page
