@@ -888,3 +888,4 @@ If that does not resolve the problem do the following and contact EdWiser
 4. Click Question Bank
 5. From the **Select a category** drop-down, Select CR_PROTOTYPES
 6. Delete any duplicates (usually not edited by an admin)
+7. Repeat steps using LOCAL_PROTOTYPES form the drop-down
