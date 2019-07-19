@@ -880,3 +880,11 @@ If that does not resolve the problem do the following and contact EdWiser
 }
 ```
 3. Click the **Save changes** button at the bottom of the page
+
+## Broken question (missing prototype 'xxxxxxxxx'). Cannot be run
+1. Login to Moodle
+2. Navigate to the class and quiz generating the error message
+3. Click the Gear icon
+4. Click Question Bank
+5. From the **Select a category** drop-down, Select CR_PROTOTYPES
+6. Delete any duplicates (usually not edited by an admin)
