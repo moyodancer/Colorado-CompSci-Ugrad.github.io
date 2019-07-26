@@ -42,14 +42,14 @@ gcloud compute ssh csel-backup
 sudo su - csel
 ```
 
-3. Edit the scaling script
+3. Edit the scaling environment script
 ```
-vi /home/csel/gcloud-scripts/scale-cluster/ScaleCluster.sh
+vi /home/csel/gcloud-scripts/scale-cluster/ClusterEnv.sh
 ```
 
-4. Adjust MAX_SCALE_SIZE
+4. Adjust MAX_SCALE_SIZE (Minimum 3. Maximum 8+)
 ```
-test
+MAX_SCALE_SIZE=10
 ```
 
 ## Email users of PVC Claims / Persistent Storage
