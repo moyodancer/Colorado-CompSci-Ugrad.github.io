@@ -89,3 +89,12 @@ Thank you.
 
 CSEL EdTech Services Team
 ```
+
+## SSL Certificate Expired/Expiring
+
+```
+gcloud config set project emerald-agility-749
+kubectl config set-context gke_emerald-agility-749_us-west1-a_jupyterhub-campus --namespace jupyterhub-campus
+kubectl get pod | grep autohttp
+kubectl delete pod [autohttps pod name]
+```
