@@ -238,7 +238,7 @@ kubectl config set-context gke_csel-dev-161517_us-west1-a_development --namespac
         4. Click Equivalent REST at the bottom of the page
         5. Find the "selfLink" value and copy it for use in creating the new disk
     3. Delete the existing moodle-data-disk-ssd in Development
-		    1. Click the project name at the top of the page
+		1. Click the project name at the top of the page
         2. In the Select From drop-down, select colorado.edu
         3. Click CSEL-DEV from the project list
         4. From the left navigation, Click Disks (under Compute Engine)
