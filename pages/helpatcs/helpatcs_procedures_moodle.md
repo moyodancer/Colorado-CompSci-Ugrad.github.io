@@ -207,12 +207,15 @@ kubectl config set-context gke_csel-dev-161517_us-west1-a_development --namespac
 
 2. Restore the SQL development database with production data in the [Cloud Console](https://console.cloud.google.com).
     1. Click SQL from the left side navigation
-    2. Click moodle-mysql from the content area
-    3. Click the Backups tab
-    4. Find the most recent backup and click on the 3-dot button to its right
-    5. From the drop-down menu, click Restore
-    6. Set the Target Instance drop-down to "moodle-mysql-dev"
-    7. Click OK
+    2. Click moodle-mysql-dev from the content area
+    3. Click the Start button to start the dev instance
+    4. Click Back to return to the SQL server list
+    5. Click moodle-mysql from the content area
+    6. Click the Backups tab
+    7. Find the most recent backup and click on the 3-dot button to its right
+    8. From the drop-down menu, click Restore
+    9. Set the Target Instance drop-down to "moodle-mysql-dev"
+    10. Click OK
 
 3. Restore the Moodle data disk.
 * This process is not ideal but Google Compute does not allow you to access snapshot disks across projects, however, it does allow you to share images. So we first create an image from a snapshot and share this with the development project.
@@ -433,6 +436,8 @@ Error messages about NFS already existing are okay/expected.
 
 34. Test (Must be on CU VPN)
 [Moodle-dev](https://moodle-dev.csel.io)
+
+Remember: When you are done Testing, stop all services and **shutdown the moodle-mysql-dev database**
 
 ### Additional Documentation Link(s)
 
