@@ -246,8 +246,8 @@ kubectl config set-context gke_csel-dev-161517_us-west1-a_development --namespac
         6. Find the moodle-data-disk-ssd
         7. Click the 3-dot button to the right
         8. Click Delete from the drop-down menu
-				9. **Triple check that you are in the CSEL-DEV project**
-				10. Click the Delete button
+		9. **Triple check that you are in the CSEL-DEV project**
+		10. Click the Delete button
     4. Create a new moodle-data-disk-ssd in development.
         1. Run the same window you preformed step 1, run the following command after replacing [SELFLINK_PATH] with the selflink path captured when creating the new image
         2. ```gcloud compute disks create moodle-data-disk-ssd --zone=us-west1-a --image=[SELFLINK_PATH]```
