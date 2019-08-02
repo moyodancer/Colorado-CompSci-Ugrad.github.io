@@ -437,9 +437,14 @@ Error messages about NFS already existing are okay/expected.
 34. Test (Must be on CU VPN)
 [Moodle-dev](https://moodle-dev.csel.io)
 
+Remember: When you are done Testing, stop all services and **shutdown the moodle-mysql-dev database, test cluster, and test disks**
 
+When you are ready to update production
+```
+kubectl edit deployment php-fpm
+```
 
-Remember: When you are done Testing, stop all services and **shutdown the moodle-mysql-dev database**
+Update to match the new version you tested in DEV 
 
 ### Additional Documentation Link(s)
 
