@@ -377,27 +377,6 @@ git push --set-upstream origin development3.6.2
 cd ../../../k8s-moodle
 ```
 
-26. Fix permissions on scripts
-```
-chmod 750 build/development/namespace/*
-chmod 750 build/development/scripts/*
-```
-
-
-27. Check [Jenkins](https://ci.csel.io/) for build completion (Must be on CU VPN)
-
-
-28. Tear down all services in DEV
-```
-build/development/scripts/tear-down-all
-```
-Note: a remaining cluster node is okay
-
-29. Ensure all pods are gone
-```
-kubectl get pod
-```
-
 30. Build the environment
 ```
 ./build-env development
@@ -427,6 +406,27 @@ kubectl get pod
 >         - service address: 10.43.250.93
 ```
 
+26. Fix permissions on scripts
+```
+chmod 750 build/development/namespace/*
+chmod 750 build/development/scripts/*
+```
+
+
+27. Check [Jenkins](https://ci.csel.io/) for build completion (Must be on CU VPN)
+
+
+28. Tear down all services in DEV
+```
+build/development/scripts/tear-down-all
+```
+Note: a remaining cluster node is okay
+
+29. Ensure all pods are gone
+```
+kubectl get pod
+```
+
 33. Deploy the environment
 ```
 build/development/scripts/deploy-all
@@ -436,6 +436,8 @@ Error messages about NFS already existing are okay/expected.
 
 34. Test (Must be on CU VPN)
 [Moodle-dev](https://moodle-dev.csel.io)
+
+
 
 Remember: When you are done Testing, stop all services and **shutdown the moodle-mysql-dev database**
 
