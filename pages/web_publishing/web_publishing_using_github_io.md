@@ -13,7 +13,8 @@ disseminate their work. It's common to use content manage tools
 such as [wordpress](http://wordpress.com) for this purpose, but
 those systems require maintenance and a server.
 
-** Note that this solution is not avaialble to private websites, student websites or websites not affilitated with an official function of the University of Colorado. OIT has final discretion over approval of forwarding such pages ** 
+##Note:
+This solution of redirecting a `colorado.edu` domain name to github pages is not avaialble to private websites, student websites or websites not affilitated with an official function of the University of Colorado. OIT has final discretion over approval of forwarding such pages.
 
 ## An alternative: GitHub static pages
 
