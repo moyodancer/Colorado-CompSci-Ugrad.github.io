@@ -16,3 +16,5 @@ This site is a collection of information that can help you navigate the tools an
 In the navigation on the left side, the Services section offers details about using the services provided by the Computer Science department. The Software section covers a variety of software that is available to support education.
 
 In the navigation at the top of the page, Services drop-down provides quick access to the major section of this website. The News link offers information about recent events from the Compute and Education Technology (EdTech) sub-committees.
+
+Please refer to the [Introduction to EdTech committees](https://docs.google.com/presentation/d/1HObrhhGmm_FDLMSgNCa-uEmKbArvswAH1DfPSJfax6o/edit?usp=sharing) for more information.
