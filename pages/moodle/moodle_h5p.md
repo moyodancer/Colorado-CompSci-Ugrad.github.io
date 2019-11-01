@@ -16,6 +16,14 @@ User interactions and scores are tracked using xAPI and are available through th
 
 You add interactive H5P content by creating content using the built-in authoring tool or uploading H5P files found on other H5P enabled sites.
 
+## Backup/Restore perforamnce
+You may experience a very slow backup and restore of the course contains H5P content. The backup script of H5P will dump every library installed during the backup process, which impact on the backup performance.
+
+You can exclude the libraries from the backup by adding the configuration option to Moodle's config.php
+```
+$CFG->mod_hvp_backup_libraries = '0';
+```
+
 ## Links
 
 [https://h5p.org/interactive-video](https://h5p.org/interactive-video)
