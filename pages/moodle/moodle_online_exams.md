@@ -1,16 +1,16 @@
 ---
-title: Online Exams
+title: In-person Online Exams
 keywords: moodle, wireless, online
 sidebar: moodle_sidebar
 permalink: moodle_online_exams.html
 folder: moodle
 ---
 
-# CS Department Wireless & Online Exams
+# CS Department Wireless & In-Person Online Exams
 
-Many classes taught in the CS department use online exams. Those exams depend on wireless networks that can support the students in the class accessing the exam system (typically Moodle). Several classrooms are unable to support that wireless use. This document describes the wireless network hardware that can be deployed in different classrooms. It also has suggestions on successfully using online exams.
+Many classes taught in the CS department use in-person online exams. Those exams depend on wireless networks that can support the students in the class accessing the exam system (typically Moodle). Several classrooms are unable to support that wireless use. This document describes the wireless network hardware that can be deployed in different classrooms. It also has suggestions on successfully using online exams.
 
-## Suggestions for online exams
+## Suggestions for in-person online exams
 
 ### Proper exam Settings
 You should set your exam to use **unlimited** attempts and **each attempt builds on the previous**. These options are in the exam settings, and the option to build upon the prior attempt is not shown until you select unlimited attempts. Correct settings are shown in this image:
