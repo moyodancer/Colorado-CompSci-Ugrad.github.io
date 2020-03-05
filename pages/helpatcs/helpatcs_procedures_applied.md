@@ -7,7 +7,9 @@ folder: helpatcs
 ---
 
 ## Introduction
-A second instance of Moodle is used to host online only classes. All of the documentation for the CS Moodle will work here. However, the Context information below would be used instead of that referenced in the documentation. In general, Help@CS is not responsible for for the Applied Moodle, but we do offer assistance and consultation on an as needed basis.
+A second instance of Moodle is used to host online only classes. All of the documentation for the CS Moodle will work here. However, the Context information below would be used instead of that referenced in the documentation.
+
+Help@CS supports the `applied.cs.coloraod.edu` website as well as the `moodle.cs.colorado.edu` LMS.
 
 ## Context
 ```
