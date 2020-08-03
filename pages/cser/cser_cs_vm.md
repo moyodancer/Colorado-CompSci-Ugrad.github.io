@@ -7,7 +7,7 @@ permalink: cser_cs_vm.html
 folder: cser
 ---
 
-{% include note.html content="The use of the CU CS VM is deprecated in favor of using the <a href='/coding_environment_landing_page.html'>Cloud Coding Environment. It should only be used if your Instructor requires it or if you do not have a stable internet connection.</a>" %}
+{% include note.html content="The use of the CU CS VM is deprecated in favor of using the <a href='/coding_environment_landing_page.html'>Cloud Coding Environment</a>" %}
 
 {% include note.html content="The current VM version is CU CS VM Fall 2020" %}
 
@@ -58,7 +58,7 @@ Guest Tools are pre-installed, so you are able to:
 
 As on most Debian-based system, the root account does not have a password set and is disabled. Use `sudo` if you need to run privileged commands on the account you created when you first boot the machine.
 
-### Performance on the VM is very bad, why is this?
+### Performance on the VM is poor, why is this?
 Virtualization Support is likley disabled on your computer. Please ensure Virtualization Support is enabled in your computer's firmware settings.
 
 ### Why is networking not working on the VM?
