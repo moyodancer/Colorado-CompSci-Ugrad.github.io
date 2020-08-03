@@ -31,14 +31,14 @@ If you are experiencing difficulty either downloading or installing the VM, plea
 
 ## Importing the Virtual Machine (macOS)
 
-1) Extract the downloaded archive to expand the `CU CS Virtual Machine Fall 2020.vmwarevm` folder
-2) Open the bundle
-3) You will recieve a dialog asking if the machine was moved or copied, click `I Copied It`
-4) The Virtual Machine will then boot to the Welcome Screen
+1) Extract the downloaded archive to expand the `CU CS Virtual Machine Fall 2020.vmwarevm` folder  
+2) Open the bundle  
+3) You will recieve a dialog asking if the machine was moved or copied, click `I Copied It`  
+4) The Virtual Machine will then boot to the Welcome Screen  
 
-## Install (Windows)
+## Importing the Virtual Machine (Windows)
 
-1) Extract the downloaded archive to expand the `CU CS Virtual Machine Fall 2020.vmwarevm` folder
+1) Extract the downloaded archive to expand the `CU CS Virtual Machine Fall 2020.vmwarevm` folder  
 
 ## Usage
 
