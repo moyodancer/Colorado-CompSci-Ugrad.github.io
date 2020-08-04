@@ -83,7 +83,7 @@ On macOS:
 1) Open Virtual Machine -> Settings  
 2) Open Sharing  
 3) Add a host folder you would like to Share to the VM  
-4) Reboot the Virtual Machine
+4) Reboot the Virtual Machine  
 5) You can then browse to this directory in the Ubuntu file manager by opening "Files", clicking "Other Locations", and navigating to `/mnt/hgfs/<yourFolder>`  
 
 On Windows:  
