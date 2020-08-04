@@ -28,12 +28,12 @@ To run smoothly, the VM requires a minimum of:
 
 [CU CS Virtual Machine Fall 2020](https://foundation.cs.colorado.edu/vm/CU-CS-VM-Fall-2020.zip) (5.87GB)
 
-If you are experiencing difficulty either downloading or installing the VM, please email the Computer Science IT Services at [helpcs@colorado.edu](mailto:helpcs@colorado.edu).
+If you are experiencing difficulty either downloading or installing the VM, please send a message to Computer Science IT Services at [helpcs@colorado.edu](mailto:helpcs@colorado.edu) to open a ServiceNow case.
 
 ## Importing the Virtual Machine (macOS)
 
 1) Extract the downloaded archive to expand the `CU CS Virtual Machine Fall 2020.vmwarevm` directory   
-2) Move the `CU CS Virtual Machine Fall 2020.vmwarevm` bundle to `/Users/<yourUserAccount>/Virtual Machines`
+2) Move `CU CS Virtual Machine Fall 2020.vmwarevm` to `/Users/<yourUserAccount>/Virtual Machines`  
 3) Open the bundle  
 4) You will recieve a dialog asking if the machine was moved or copied, click `I Copied It`  
 5) The Virtual Machine will then boot to the Welcome Screen  
