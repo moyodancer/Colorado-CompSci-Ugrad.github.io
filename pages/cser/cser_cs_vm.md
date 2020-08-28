@@ -44,7 +44,7 @@ If you are experiencing difficulty either downloading or installing the VM, plea
 2) Move the extracted `CU CS Virtual Machine Fall 2020.vmwarevm` directory to `C:\Users\<yourUserAccount>\Documents\Virtual Machines\`  
 3) Open VMWare Workstation 15 Pro  
 4) On the "Home" tab, click "Open a Virtual Machine"  
-5) Navigate into the `CU CS Virtual Machine Fall 2020.vmwarevm` directory and double click `Ubuntu 64-bit`  
+5) Navigate into the `CU CS Virtual Machine Fall 2020.vmwarevm` directory and double click `CU CS VM Fall 2020.vmx`  
 6) An entry `CU CS Virtual Machine Fall 2020` will now be present  
 7) You will recieve a dialog asking if the machine was moved or copied, click `I Copied It`  
 8) Power on the Virtual Machine to boot to the Welcome Screen  
