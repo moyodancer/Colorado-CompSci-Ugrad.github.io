@@ -22,7 +22,7 @@ To run smoothly, the VM requires a minimum of:
 * 4 physical processor cores
 * 32GB of free HD space
 * An [OIT recommended Operating System](https://oit.colorado.edu/software-hardware/software-lifecycle) (Currently Windows 10 1909, or macOS 10.15 Catalina)
-* Either VMWare Fusion 11.x (macOS) or Workstation 15.x (Windows)
+* Either VMWare Fusion 10+ (macOS) or Workstation 14+ (Windows)
 
 ## Download
 
