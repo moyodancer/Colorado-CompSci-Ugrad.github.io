@@ -9,7 +9,7 @@ folder: cser
 
 {% include note.html content="The use of the CU CS VM is deprecated in favor of using the <a href='/coding_environment_landing_page.html'>Cloud Coding Environment</a>" %}
 
-{% include note.html content="The current VM version is CU CS VM Fall 2020, HW Version 16" %}
+{% include note.html content="The current VM version is CU CS VM Fall 2020, Virtual Hardware Version 14" %}
 
 {% include note.html content="Use of the CU CS VM is dependent on VMware. Please complete the [VMware](/cser_vmware.html) setup before proceeding." %}
 
@@ -26,7 +26,7 @@ To run smoothly, the VM requires a minimum of:
 
 ## Download
 
-[CU CS Virtual Machine Fall 2020](https://foundation.cs.colorado.edu/vm/CU-CS-VM-Fall-2020.zip) (5.87GB)
+[CU CS Virtual Machine Fall 2020](https://foundation.cs.colorado.edu/vm/CU-CS-VM-Fall-2020.zip) (3.26 GiB)
 
 If you are experiencing difficulty either downloading or installing the VM, please send a message to Computer Science IT Services at [helpcs@colorado.edu](mailto:helpcs@colorado.edu) to open a ServiceNow case.
 
@@ -51,21 +51,21 @@ If you are experiencing difficulty either downloading or installing the VM, plea
 
 ## Usage
 
-The VM runs a minimal installation of Ubuntu 20.04 (Focal Fossa) with preinstalled binaries for certian CSCI courses. This consists of a VSCode environment, a gcc enivronment, time series analysis tools, etc...
+The VM runs a minimal installation of Ubuntu 16.04.7 LTS (Xenial) with preinstalled binaries for certian CSCI courses. 16.04.7 is required for some CSCI courses related to compiling older kernel source. In addition, it contains time series analysis tools and a VSCode environment. Use this VM if you cannot utilize the cloud coding environment due to poor or unavailable internet connectivity.
 
 ### Basics
 
 To launch the VM, select it in the left-side VMWare VM list and either double-click or select the green Start button at the top of the VirtualBox window. The VM will launch in its own window. After completing the boot process (you may see a black screen with scrolling text for a few moments), the VM will present a Welcome screen for you to create your account. Enter a username and password of your choosing for this.
 
-Guest Tools are pre-installed, so you are able to:
-* Resize the VM window: the desktop will resize itself to accommodate your desired window size
+VMWare Guest Tools are pre-installed, so you are able to:
+* Resize the VM window: the guest system will adjust resolution to accommodate your desired window size
 * Copy and Paste / Drag and Drop items from your machine to the virtual machine
 
 ## Frequently Asked Questions (FAQ)
 
 ### What is the root account password?
 
-As on most Debian-based system, the root account does not have a password set and is disabled. Use `sudo` if you need to run privileged commands on the account you created when you first boot the machine.
+As on most Debian-based systems, the root account does not have a password set and is disabled. Use `sudo` if you need to run privileged commands on the account you created when you first boot the machine.
 
 ### Performance on the VM is poor, why is this?
 Virtualization Support is likley disabled on your computer. Please ensure Virtualization Support is enabled in your computer's firmware settings.
