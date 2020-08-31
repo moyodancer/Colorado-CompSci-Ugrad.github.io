@@ -75,7 +75,7 @@ Yes, but please use the following link instead as it contains specific EFI firmw
 ### May I use another hypervisor?
 
 Yes, but this is outside our support scope. It is also likley outside the support scope at the course level. 
-The vhdx is EFI based, so you will need to add an efi boot option ((grubx64.efi/shimx64.efi) from the ESP) in your hypervisor firmware settings. It is highly recommended to instead use what your course recommends.
+The vhdx is EFI based, so you will need to add an efi boot option ((grubx64.efi / shimx64.efi) from the ESP) in your hypervisor firmware settings. It is highly recommended to instead use what your course recommends.
 
 ### Performance on the VM is poor, why is this?
 Virtualization Support is likley disabled on your computer. Please ensure Virtualization Support is enabled in your computer's firmware settings.
