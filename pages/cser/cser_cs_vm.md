@@ -7,11 +7,9 @@ permalink: cser_cs_vm.html
 folder: cser
 ---
 
-{% include note.html content="The use of the CU CS VM is deprecated in favor of using the <a href='/coding_environment_landing_page.html'>Cloud Coding Environment</a>" %}
+{% include note.html content="The current VM version is CU CS VM Fall 2020" %}
 
-{% include note.html content="The current VM version is CU CS VM Fall 2020, Virtual Hardware Version 14" %}
-
-{% include note.html content="Use of the CU CS VM is dependent on VMware. Please complete the [VMware](/cser_vmware.html) setup before proceeding." %}
+{% include note.html content="Use of the CU CS VM is dependent on VMware or VirtualBox. Please complete the [VMware](/cser_vmware.html) setup before proceeding." %}
 
 ## System Requirements
 
@@ -20,13 +18,14 @@ To run smoothly, the VM requires a minimum of:
 * 8GB of RAM
 * Intel or AMD processor with virtualization support (VT-x or AMD-V)
 * 4 physical processor cores
-* 32GB of free HD space
+* 32GB of free HD space (64GB+ if doing kernel compilation exercises)
 * An [OIT recommended Operating System](https://oit.colorado.edu/software-hardware/software-lifecycle) (Currently Windows 10 1909, or macOS 10.15 Catalina)
 * Either VMWare Fusion 10+ (macOS) or Workstation 14+ (Windows)
+* VirtualBox 6.1+ if you are a native Linux user (See FAQ for different download)
 
 ## Download
 
-[CU CS Virtual Machine Fall 2020](https://foundation.cs.colorado.edu/vm/CU-CS-VM-Fall-2020.zip) (3.26 GiB)
+[CU CS Virtual Machine Fall 2020](https://foundation.cs.colorado.edu/vm/CU-CS-VM-Fall-2020.zip) (4.18 GiB)
 
 If you are experiencing difficulty either downloading or installing the VM, please send a message to Computer Science IT Services at [helpcs@colorado.edu](mailto:helpcs@colorado.edu) to open a ServiceNow case.
 
@@ -67,6 +66,17 @@ VMWare Guest Tools are pre-installed, so you are able to:
 
 As on most Debian-based systems, the root account does not have a password set and is disabled. Use `sudo` if you need to run privileged commands on the account you created when you first boot the machine.
 
+### May I use VirtualBox instead of Fusion/Workstation?
+
+Yes, but please use the following link instead as it contains specific EFI firmware settings (nvram), as well as Guest Tools for VirtualBox
+
+[CU CS Virtual Machine Fall 2020 VirtualBox](https://foundation.cs.colorado.edu/vm/VirtualBox/CU-CS-VM-Fall-2020.zip) (4.28 GiB)
+
+### May I use another hypervisor?
+
+Yes, but this is outside our support scope. It is also likley outside the support scope at the course level. 
+The vhdx is EFI based, so you will need to add an efi boot option ((grubx64.efi/shimx64.efi) from the ESP) in your hypervisor firmware settings. It is highly recommended to instead use what your course recommends.
+
 ### Performance on the VM is poor, why is this?
 Virtualization Support is likley disabled on your computer. Please ensure Virtualization Support is enabled in your computer's firmware settings.
 
@@ -77,7 +87,7 @@ If you have accidently modified your Virtual Network Adapter, please set it back
 
 ### Is there a way to make file access easier than drag and drop?
 
-You can enable Shared Folders.
+You can enable Shared Folders. For VMWare:
 
 On macOS:  
 1) Open Virtual Machine -> Settings  
