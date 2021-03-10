@@ -26,9 +26,6 @@ entries:
       url: /index.html
       output: web, pdf
       type: homepage
-    - title: Careers
-      url: /careers.html
-      output: web, pdf
 
   - title: Services
     output: web, pdf
