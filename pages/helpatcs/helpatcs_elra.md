@@ -18,6 +18,11 @@ SSH into `elra.cs.colorado.edu`, which consist of the following hosts:
 
 You may set a shell globally on the [IdentiKey Portal](https://identikey.colorado.edu/choose_shell.html). This is `/bin/bash` by default.
 
+To connect to the lab you must be on the campus network or [connected to VPN via the AnyConnect Client](https://oit.colorado.edu/services/network-internet-services/vpn). Then, you can ssh into one of the above hosts via:
+```
+ssh <IdentiKey>@<host>
+```
+
 ## Websites
 A personal site can be hosted if you create `~/public_html` or `~/.www` on any one of of the elra hosts mentioned above. 
 [https://csel-web.cs.colorado.edu/~identikey](https://csel-web.cs.colorado.edu/~identikey).
